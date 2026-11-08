@@ -49,24 +49,43 @@ Expert Panel provides **exactly four delivery formats** to fit any environment w
 
 ## Quick start
 
-Launch the interactive cross-platform menu via npm or Python:
+### Recommended: ask your AI agent to install it
+
+Copy this message into Claude Code, OpenCode, Codex, Gemini CLI, or another agent that can read files and run terminal commands:
+
+```text
+Install the Expert Panel skill from https://github.com/Jecky5675/expert-panel.
+
+1. Clone the repository into a temporary directory.
+2. Read README.md and docs/INSTALLATION.md before changing anything.
+3. Detect which skill directory and subagent format this host supports.
+4. Install only the native format supported by this host.
+5. If the host supports Agent Skills, install skills/expert-panel/SKILL.md and its references.
+6. If the host supports native subagents, render/install the matching host-native agents.
+7. Do not install a fake plugin format. If plugin support is not verified, use the direct skill or solo profile.
+8. Do not overwrite existing files. Show the destination and verify the installed files after copying.
+9. Report exactly what was installed and where.
+```
+
+### Manual installation
 
 ```bash
-# From the GitHub experimental repository (works before registry publication):
 git clone https://github.com/Jecky5675/expert-panel.git
 cd expert-panel
 python scripts/universal_installer.py
-
-# Or run directly from a local checkout:
-python scripts/universal_installer.py
-node scripts/node/cli.mjs
-
-# Registry commands (available only after npm/PyPI publication):
-# npx expert-panel-installer
-# pipx run expert-panel-installer
-
-> The npm and PyPI package names are reserved in the project metadata, but the experimental release is currently GitHub-only until registry credentials and publication are completed.
 ```
+
+The menu asks which host profile to use and protects existing installations. For an agent host, choose `agent`. For a web chat, choose one of the three export formats.
+
+### If you already have a local checkout
+
+```bash
+python scripts/universal_installer.py
+# or
+node scripts/node/cli.mjs
+```
+
+The npm and PyPI registry packages are not part of the current user installation path. Use the GitHub checkout above.
 
 ### Automation & Direct CLI Export
 
