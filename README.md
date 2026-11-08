@@ -52,15 +52,20 @@ Expert Panel provides **exactly four delivery formats** to fit any environment w
 Launch the interactive cross-platform menu via npm or Python:
 
 ```bash
-# Via npm (no local clone needed):
-npx expert-panel-installer
+# From the GitHub experimental repository (works before registry publication):
+git clone https://github.com/Jecky5675/expert-panel.git
+cd expert-panel
+python scripts/universal_installer.py
 
-# Via Python / pipx:
-pipx run expert-panel-installer
-
-# Or run directly from this repository:
+# Or run directly from a local checkout:
 python scripts/universal_installer.py
 node scripts/node/cli.mjs
+
+# Registry commands (available only after npm/PyPI publication):
+# npx expert-panel-installer
+# pipx run expert-panel-installer
+
+> The npm and PyPI package names are reserved in the project metadata, but the experimental release is currently GitHub-only until registry credentials and publication are completed.
 ```
 
 ### Automation & Direct CLI Export

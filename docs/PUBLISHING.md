@@ -42,7 +42,7 @@ python scripts/python/build_publishable.py --target both --output ./dist-check
 
 ## 2. npm: пакет для `npx`
 
-Публиковать нужно из `scripts/node/`, а не из корня репозитория. Имя и версия берутся из `scripts/node/package.json`.
+Публиковать нужно из `scripts/node/`, а не из корня репозитория. Имя и версия берутся из `scripts/node/package.json`. Сейчас registry-публикация ещё не выполнена: npm отвечает `E401` для текущей сессии, а пакет отсутствует в registry. Поэтому до авторизации используйте GitHub checkout или локальный tarball.
 
 1. После утверждения лицензии проверьте `scripts/node/package.json` и убедитесь, что поле `files` включает CLI и `package-payload/**`.
 2. Соберите и проверьте содержимое tarball без публикации:
@@ -74,7 +74,7 @@ npm publish --access public
 
 ## 3. PyPI и `pipx`
 
-Для pipx пакет должен быть wheel или sdist с entry point `expert-panel` и с полным скиллом внутри пакета. Установка `pipx` у потребителя не исправит отсутствующий payload.
+Для pipx пакет должен быть wheel или sdist с entry point `expert-panel` и с полным скиллом внутри пакета. Установка `pipx` у потребителя не исправит отсутствующий payload. Сейчас пакет ещё не опубликован в PyPI, поэтому `pipx run expert-panel-installer` до публикации закономерно завершится ошибкой. Используйте GitHub checkout или локальный wheel.
 
 1. Соберите wheel и sdist в отдельную временную папку, используя изолированное окружение с актуальными build tools:
 

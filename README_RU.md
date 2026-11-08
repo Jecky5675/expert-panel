@@ -52,15 +52,20 @@ Expert Panel предоставляет **ровно четыре формата
 Запустите универсальное интерактивное меню через npm или Python:
 
 ```bash
-# Через npm (без предварительного клонирования):
-npx expert-panel-installer
+# Из экспериментального GitHub-репозитория (работает до публикации в реестрах):
+git clone https://github.com/Jecky5675/expert-panel.git
+cd expert-panel
+python scripts/universal_installer.py
 
-# Через Python / pipx:
-pipx run expert-panel-installer
-
-# Либо прямой запуск из клонированного репозитория:
+# Или напрямую из локальной копии:
 python scripts/universal_installer.py
 node scripts/node/cli.mjs
+
+# Команды для реестров (станут доступными после публикации npm/PyPI):
+# npx expert-panel-installer
+# pipx run expert-panel-installer
+
+> Имена npm- и PyPI-пакетов уже указаны в metadata, но экспериментальный релиз пока доступен только через GitHub. Для работы npx/pipx сначала нужно завершить публикацию в реестры.
 ```
 
 ### Автоматизация и прямой экспорт через CLI
