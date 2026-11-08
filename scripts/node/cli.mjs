@@ -235,7 +235,12 @@ async function interactiveMenu(source, yes, lang = null) {
         const defaultAgents = key === 'opencode' ? join(homedir(), '.config/opencode/agents') : key === 'claude-code' ? join(homedir(), '.claude/agents') : join(resolve(targetPathVal, '..'), 'agents');
         const customAgents = (await ask(ru ? `Папка субагентов (Enter = ${defaultAgents}): ` : `Subagents folder (Enter = ${defaultAgents}): `)).trim();
         const agentsDest = resolve(customAgents || defaultAgents);
-        if (await lstat(agentsDest).then(() => true).catch(() => false)) throw new Error(ru ? 'Папка сабагентов уже существует; перезапись запрещена' : 'Subagent destination exists; refusing overwrite');
+        const destinationExists = await lstat(agentsDest).then(() => true).catch(() => false);
+        if (destinationExists) {
+          const existing = await readdir(agentsDest);
+          const expected = existing.filter(name => name.startsWith('expert-') && (name.endsWith('.json') || name.endsWith('.md')));
+          if (expected.length) throw new Error(ru ? `Файлы Expert Panel уже существуют: ${expected.join(', ')}` : `Expert Panel agent files already exist: ${expected.join(', ')}`);
+        }
         const renderer = join(dirname(fileURLToPath(import.meta.url)), '..', 'render_host_agents.py');
         if (fmt === 'json') {
           await mkdir(agentsDest, { recursive: true });

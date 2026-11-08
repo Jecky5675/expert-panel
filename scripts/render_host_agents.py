@@ -45,10 +45,12 @@ def render_agent(agent: dict[str, object], host: str) -> str:
 def render(source: Path, destination: Path, host: str, dry_run: bool = False) -> list[Path]:
     if host not in HOSTS:
         raise ValueError(f"Unsupported host: {host}")
-    if destination.exists() and any(destination.iterdir()):
-        raise FileExistsError(f"Refusing to write into non-empty agent directory: {destination}")
+    destination.mkdir(parents=True, exist_ok=True)
     agents = load_agents(source)
     outputs = [destination / f"{agent['id']}.md" for agent in agents]
+    conflicts = [output for output in outputs if output.exists()]
+    if conflicts:
+        raise FileExistsError(f"Refusing to overwrite existing Expert Panel agents: {', '.join(str(item) for item in conflicts)}")
     if dry_run:
         return outputs
     destination.mkdir(parents=True, exist_ok=True)

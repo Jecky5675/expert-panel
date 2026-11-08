@@ -81,19 +81,23 @@ def target_path(kind: str, dest: str | None) -> Path:
     return root if root.name == SKILL_DIR else root / SKILL_DIR
 
 def install_subagents(source: Path, agents_dest: Path, agent_format: str, ru: bool = False) -> dict[str, object]:
-    if agents_dest.exists() and any(agents_dest.iterdir()):
-        raise FileExistsError(f"{'Папка сабагентов не пуста' if ru else 'Subagent destination is not empty'}: {agents_dest}")
     agents_dest.mkdir(parents=True, exist_ok=True)
     if agent_format == "json":
         copied = []
         for agent in sorted((source / "agents").glob("expert-*.json")):
             target = agents_dest / agent.name
+            if target.exists():
+                raise FileExistsError(f"{'Сабагент уже существует, перезапись запрещена' if ru else 'Expert Panel subagent already exists; refusing overwrite'}: {target}")
             shutil.copy2(agent, target)
             copied.append(target)
     elif agent_format in {"md", "markdown"}:
         import subprocess
         host = "opencode" if "opencode" in str(agents_dest).casefold() else "claude-code"
-        subprocess.run([sys.executable, str(RENDER_AGENTS), "--host", host, "--source", str(source), "--dest", str(agents_dest)], check=True)
+        proc = subprocess.run([sys.executable, str(RENDER_AGENTS), "--host", host, "--source", str(source), "--dest", str(agents_dest)], capture_output=True, text=True)
+        if proc.returncode != 0:
+            if "Refusing to overwrite" in proc.stderr:
+                raise FileExistsError(f"{'Сабагенты Expert Panel уже существуют в этой папке; перезапись запрещена' if ru else 'Expert Panel subagents already exist; refusing overwrite'}")
+            raise RuntimeError(f"Failed to render Markdown subagents: {proc.stderr}")
         copied = sorted(agents_dest.glob("expert-*.md"))
     else:
         raise ValueError("agents format must be json or md")
