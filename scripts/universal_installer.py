@@ -16,7 +16,8 @@ if str(HERE) not in sys.path:
     sys.path.insert(0, str(HERE))
 
 import export_formats
-import plugins.setup_plugin as setup_plugin
+
+RENDER_AGENTS = HERE / "render_host_agents.py"
 
 INSTALLER_VERSION = "27.3.0"
 SKILL_DIR = "expert-panel"
@@ -78,6 +79,26 @@ def target_path(kind: str, dest: str | None) -> Path:
     root = Path(dest).expanduser() if dest else default_root(kind)
     root = root.resolve()
     return root if root.name == SKILL_DIR else root / SKILL_DIR
+
+def install_subagents(source: Path, agents_dest: Path, agent_format: str, ru: bool = False) -> dict[str, object]:
+    if agents_dest.exists() and any(agents_dest.iterdir()):
+        raise FileExistsError(f"{'Папка сабагентов не пуста' if ru else 'Subagent destination is not empty'}: {agents_dest}")
+    agents_dest.mkdir(parents=True, exist_ok=True)
+    if agent_format == "json":
+        copied = []
+        for agent in sorted((source / "agents").glob("expert-*.json")):
+            target = agents_dest / agent.name
+            shutil.copy2(agent, target)
+            copied.append(target)
+    elif agent_format in {"md", "markdown"}:
+        import subprocess
+        host = "opencode" if "opencode" in str(agents_dest).casefold() else "claude-code"
+        subprocess.run([sys.executable, str(RENDER_AGENTS), "--host", host, "--source", str(source), "--dest", str(agents_dest)], check=True)
+        copied = sorted(agents_dest.glob("expert-*.md"))
+    else:
+        raise ValueError("agents format must be json or md")
+    return {"format": "md" if agent_format == "markdown" else agent_format, "target": str(agents_dest), "files": [p.name for p in copied], "hashes": {p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in copied}}
+
 
 def install_agent(source: Path, target: Path, dry_run: bool, yes: bool, ru: bool = False) -> dict[str, object]:
     if target == source or source in target.parents:
@@ -198,7 +219,7 @@ def interactive_menu(source: Path, yes: bool, lang: str | None = None):
     print("="*56)
 
     main_options = [
-        "ИИ-агенты (установка скилла, субагентов или плагина)" if ru else "AI Agents (install skill, subagents, or client plugin)",
+        "ИИ-агенты (скилл, JSON/Markdown сабагенты или solo)" if ru else "AI Agents (skill, JSON/Markdown subagents, or solo)",
         "Веб-чаты (получить скилл: ZIP для скиллов, обычный ZIP или Markdown)" if ru else "Web AI (export web-skill ZIP, universal ZIP, or Markdown)",
         "Удалить установленный скилл" if ru else "Uninstall existing installation",
         "Выход" if ru else "Exit"
@@ -213,8 +234,8 @@ def interactive_menu(source: Path, yes: bool, lang: str | None = None):
     elif choice == 0:
         # Category 1: AI Agents
         sub_options = [
-            "Установить скилл в каталог агента (Claude Code, Codex, OpenCode и др.)" if ru else "Install skill into agent directory (Claude Code, Codex, OpenCode, etc.)",
-            "Установить плагин для клиента (OpenCode, Claude Code, Zed IDE)" if ru else "Install client plugin with subagents (OpenCode, Claude Code, Zed IDE)",
+            "Установить скилл и сабагентов (выбрать JSON или Markdown)" if ru else "Install skill and subagents (choose JSON or Markdown)",
+            "Установить только скилл (solo)" if ru else "Install skill only (solo)",
             "Назад" if ru else "Back"
         ]
         sub_choice = _choose("Настройка для ИИ-агентов:" if ru else "AI Agent options:", sub_options, ru)
@@ -228,50 +249,38 @@ def interactive_menu(source: Path, yes: bool, lang: str | None = None):
             target = target_path(kind, custom_root)
             res = install_agent(source, target, False, yes, ru)
 
-            want_agents = input("Установить также 6 субагентов? [Y/n]: " if ru else "Also install the 6 subagents? [Y/n]: ").strip().lower() in ("", "y", "yes", "д", "да")
+            want_agents = input("Установить также сабагентов? [Y/n]: " if ru else "Also install subagents? [Y/n]: ").strip().lower() in ("", "y", "yes", "д", "да")
             if want_agents:
-                agents_source = source / "agents"
+                fmt_idx = _choose("Формат сабагентов:" if ru else "Subagent format:", ["JSON", "Markdown"], ru)
+                agent_format = ["json", "md"][fmt_idx]
                 if kind == "opencode":
                     default_agents = Path.home() / ".config" / "opencode" / "agents"
                 elif kind == "claude-code":
                     default_agents = Path.home() / ".claude" / "agents"
                 else:
                     default_agents = target.parent.parent / "agents" if target.parent.name == "skills" else target.parent / "agents"
-
-                agents_dest_str = input(f"Папка субагентов (Enter = {default_agents}): " if ru else f"Subagents folder (Enter = {default_agents}): ").strip()
+                agents_dest_str = input(f"Папка сабагентов (Enter = {default_agents}): " if ru else f"Subagents folder (Enter = {default_agents}): ").strip()
                 agents_dest = Path(agents_dest_str).expanduser().resolve() if agents_dest_str else default_agents
-                agents_dest.mkdir(parents=True, exist_ok=True)
-                copied = [shutil.copy2(af, agents_dest / af.name).name for af in agents_source.glob("*.json")]
+                sub = install_subagents(source, agents_dest, agent_format, ru)
                 marker_path = target / MARKER
                 marker_data = json.loads(marker_path.read_text(encoding="utf-8"))
                 marker_data["profile"] = "AGENTS"
                 marker_data["agents_path"] = str(agents_dest)
-                marker_data["agent_files"] = {name: hashlib.sha256((agents_dest / name).read_bytes()).hexdigest() for name in copied}
+                marker_data["agent_format"] = agent_format
+                marker_data["agent_files"] = sub["hashes"]
                 marker_path.write_text(json.dumps(marker_data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-                res["subagents_installed"] = {"target": str(agents_dest), "files": copied}
-                print(f"{'Субагенты установлены' if ru else 'Subagents installed'}: {agents_dest} ({len(copied)} files)")
+                res["subagents_installed"] = sub
+                print(f"{'Сабагенты установлены' if ru else 'Subagents installed'}: {agents_dest} ({len(sub['files'])} files, {agent_format})")
 
             print(json.dumps(res, ensure_ascii=False, indent=2))
         elif sub_choice == 1:
-            client_keys = ["opencode"]
-            c_names = ["OpenCode (native plugin + Agent Skills + Markdown subagents)"]
-            c_choice = _choose("Выберите клиент:" if ru else "Select client:", c_names, ru)
-            target_client = client_keys[c_choice]
-            
-            cfg = setup_plugin.TARGET_PLUGINS[target_client]
-            cust = input("Изменить стандартные пути установки? [y/N]: " if ru else "Customize installation paths? [y/N]: ").strip().lower()
-            custom_s = None
-            custom_a = None
-            custom_p = None
-            if cust in ("y", "yes", "д", "да"):
-                s_in = input(f"Папка skills (Enter = {cfg['skills_dest']}): " if ru else f"Skills dir (Enter = {cfg['skills_dest']}): ").strip()
-                a_in = input(f"Папка agents (Enter = {cfg['agents_dest']}): " if ru else f"Agents dir (Enter = {cfg['agents_dest']}): ").strip()
-                p_in = input(f"Папка plugin (Enter = {cfg['plugins_dest']}): " if ru else f"Plugin dir (Enter = {cfg['plugins_dest']}): ").strip()
-                custom_s = Path(s_in).expanduser().resolve() if s_in else None
-                custom_a = Path(a_in).expanduser().resolve() if a_in else None
-                custom_p = Path(p_in).expanduser().resolve() if p_in else None
-                
-            res = setup_plugin.install_plugin(target_client, custom_s, custom_a, custom_p, False, yes, ru)
+            target_names = [k for k in TARGETS if k != "custom"] + ["custom"]
+            t_choice = _choose("Выберите целевую платформу:" if ru else "Select target agent platform:", target_names, ru)
+            kind = target_names[t_choice]
+            custom_root = input("Корневая папка skills: " if ru else "Skills root directory: ").strip() if kind == "custom" else None
+            target = target_path(kind, custom_root)
+            res = install_agent(source, target, False, yes, ru)
+            res["profile"] = "SOLO"
             print(json.dumps(res, ensure_ascii=False, indent=2))
 
     elif choice == 1:
@@ -306,7 +315,8 @@ def main() -> int:
     parser.add_argument("--format", choices=["agent", "web-skill", "universal-zip", "universal-text"], help="Directly export or install a specific format")
     parser.add_argument("--target", choices=sorted(TARGETS), default="generic", help="Target agent platform (used with --format agent)")
     parser.add_argument("--dest", help="Destination path for installation or output directory")
-    parser.add_argument("--agents-dest", help="Destination directory to install the 6 autonomous subagents")
+    parser.add_argument("--agents-dest", help="Destination directory to install subagents")
+    parser.add_argument("--agents-format", choices=("json", "md"), default="json", help="Subagent manifest format")
     parser.add_argument("--uninstall", metavar="DIR", help="Uninstall marked installation at path")
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--yes", action="store_true")
@@ -326,10 +336,8 @@ def main() -> int:
             target = target_path(args.target, args.dest)
             res = install_agent(source, target, args.dry_run, args.yes, ru)
             if args.agents_dest and not args.dry_run:
-                agents_dir = Path(args.agents_dest).expanduser().resolve()
-                agents_dir.mkdir(parents=True, exist_ok=True)
-                copied = [shutil.copy2(f, agents_dir / f.name).name for f in (source / "agents").glob("*.json")]
-                res["subagents_installed"] = {"target": str(agents_dir), "count": len(copied)}
+                sub = install_subagents(source, Path(args.agents_dest).expanduser().resolve(), args.agents_format, ru)
+                res["subagents_installed"] = sub
             print(json.dumps(res, ensure_ascii=False, indent=2))
             return 0
         else:
@@ -343,10 +351,7 @@ def main() -> int:
         target = target_path(args.target, args.dest)
         res = install_agent(source, target, args.dry_run, args.yes, ru)
         if args.agents_dest and not args.dry_run:
-            agents_dir = Path(args.agents_dest).expanduser().resolve()
-            agents_dir.mkdir(parents=True, exist_ok=True)
-            copied = [shutil.copy2(f, agents_dir / f.name).name for f in (source / "agents").glob("*.json")]
-            res["subagents_installed"] = {"target": str(agents_dir), "count": len(copied)}
+            res["subagents_installed"] = install_subagents(source, Path(args.agents_dest).expanduser().resolve(), args.agents_format, ru)
         print(json.dumps(res, ensure_ascii=False, indent=2))
         return 0
 

@@ -200,7 +200,7 @@ async function interactiveMenu(source, yes, lang = null) {
   output.write('======================================================\n');
 
   const mainOptions = [
-    ru ? 'ИИ-агенты (установка скилла, субагентов или плагина)' : 'AI Agents (install skill, subagents, or client plugin)',
+    ru ? 'ИИ-агенты (скилл, JSON/Markdown сабагенты или solo)' : 'AI Agents (skill, JSON/Markdown subagents, or solo)',
     ru ? 'Веб-чаты (получить скилл: ZIP для скиллов, обычный ZIP или Markdown)' : 'Web AI (export web-skill ZIP, universal ZIP, or Markdown)',
     ru ? 'Удалить установленный скилл' : 'Uninstall existing installation',
     ru ? 'Выход' : 'Exit'
@@ -215,8 +215,8 @@ async function interactiveMenu(source, yes, lang = null) {
   } else if (choice === 0) {
     // Category 1: AI Agents
     const subOptions = [
-      ru ? 'Установить скилл в каталог агента (Claude Code, Codex, OpenCode и др.)' : 'Install skill into agent directory (Claude Code, Codex, OpenCode, etc.)',
-      ru ? 'Установить плагин для клиента (OpenCode, Claude Code, Zed IDE)' : 'Install client plugin with subagents (OpenCode, Claude Code, Zed IDE)',
+      ru ? 'Установить скилл и сабагентов (выбрать JSON или Markdown)' : 'Install skill and subagents (choose JSON or Markdown)',
+      ru ? 'Установить только скилл (solo)' : 'Install skill only (solo)',
       ru ? 'Назад' : 'Back'
     ];
     const subChoice = await _choose(ru ? 'Настройка для ИИ-агентов:' : 'AI Agent options:', subOptions, ru);
@@ -229,39 +229,35 @@ async function interactiveMenu(source, yes, lang = null) {
       const targetPathVal = key === 'custom' ? await ask(ru ? 'Корневая папка skills: ' : 'Skills root directory: ') : TARGETS[key];
       const res = await install(source, targetPathVal, { yes, ru });
 
-      const wantAgents = (await ask(ru ? 'Установить также 6 субагентов? [Y/n]: ' : 'Also install the 6 subagents? [Y/n]: ')).trim().toLowerCase();
+      const wantAgents = (await ask(ru ? 'Установить также сабагентов? [Y/n]: ' : 'Also install subagents? [Y/n]: ')).trim().toLowerCase();
       if (['', 'y', 'yes', 'д', 'да'].includes(wantAgents)) {
+        const fmt = (await _choose(ru ? 'Формат сабагентов:' : 'Subagent format:', ['JSON', 'Markdown'], ru)) === 0 ? 'json' : 'md';
         const defaultAgents = key === 'opencode' ? join(homedir(), '.config/opencode/agents') : key === 'claude-code' ? join(homedir(), '.claude/agents') : join(resolve(targetPathVal, '..'), 'agents');
         const customAgents = (await ask(ru ? `Папка субагентов (Enter = ${defaultAgents}): ` : `Subagents folder (Enter = ${defaultAgents}): `)).trim();
         const agentsDest = resolve(customAgents || defaultAgents);
-        await mkdir(agentsDest, { recursive: true });
-        const srcAgents = join(source, 'agents');
-        const agentFiles = await readdir(srcAgents);
-        const copied = [];
-        for (const af of agentFiles) {
-          if (af.endsWith('.json')) {
-            await copyFile(join(srcAgents, af), join(agentsDest, af));
-            copied.push(af);
+        if (await lstat(agentsDest).then(() => true).catch(() => false)) throw new Error(ru ? 'Папка сабагентов уже существует; перезапись запрещена' : 'Subagent destination exists; refusing overwrite');
+        const renderer = join(dirname(fileURLToPath(import.meta.url)), '..', 'render_host_agents.py');
+        if (fmt === 'json') {
+          await mkdir(agentsDest, { recursive: true });
+          for (const af of await readdir(join(source, 'agents'))) {
+            if (af.endsWith('.json')) await copyFile(join(source, 'agents', af), join(agentsDest, af));
           }
+        } else {
+          const host = key === 'claude-code' ? 'claude-code' : 'opencode';
+          const proc = spawn('python', [renderer, '--host', host, '--source', source, '--dest', agentsDest], { stdio: 'inherit' });
+          await new Promise((resolveProc, rejectProc) => proc.on('close', code => code === 0 ? resolveProc() : rejectProc(new Error(`Agent renderer failed with code ${code}`))));
         }
-        res.subagents = { target: agentsDest, count: copied.length };
-        output.write((ru ? 'Субагенты установлены: ' : 'Subagents installed: ') + `${agentsDest} (${copied.length})\n`);
+        res.subagents = { target: agentsDest, format: fmt };
+        output.write((ru ? 'Сабагенты установлены: ' : 'Subagents installed: ') + `${agentsDest} (${fmt})\n`);
       }
       output.write(JSON.stringify(res, null, 2) + '\n');
     } else if (subChoice === 1) {
-      const clients = ['opencode'];
-      const clientIdx = await _choose(ru ? 'Выберите подтверждённый native plugin host:' : 'Select a verified native plugin host:', ['OpenCode (native plugin + Agent Skills + Markdown subagents)'], ru);
-      const targetClient = clients[clientIdx];
-      const repo = await findRepoRoot();
-      const bundledPluginScript = join(dirname(fileURLToPath(import.meta.url)), 'package-payload', 'plugins', 'setup_plugin.py');
-      const pluginScript = repo ? join(repo, 'scripts/plugins/setup_plugin.py') : bundledPluginScript;
-      return new Promise((res, rej) => {
-        const proc = spawn('python', [pluginScript, '--target', targetClient], { stdio: 'inherit' });
-        proc.on('close', code => {
-          if (code === 0) res();
-          else rej(new Error(`Plugin installer failed with code ${code}`));
-        });
-      });
+      const targets = [...Object.keys(TARGETS), 'custom'];
+      const targetIdx = await _choose(ru ? 'Выберите целевую платформу:' : 'Select target agent platform:', targets, ru);
+      const key = targets[targetIdx];
+      const targetPathVal = key === 'custom' ? await ask(ru ? 'Корневая папка skills: ' : 'Skills root directory: ') : TARGETS[key];
+      const res = await install(source, targetPathVal, { yes, ru });
+      output.write(JSON.stringify({ ...res, profile: 'SOLO' }, null, 2) + '\n');
     }
   } else if (choice === 1) {
     // Category 2: Web AI
@@ -292,7 +288,7 @@ async function interactiveMenu(source, yes, lang = null) {
 async function main() {
   const args = parseArgs(process.argv.slice(2));
   if (args.help) {
-    output.write(`npx expert-panel-installer [--format agent|web-skill|universal-zip|universal-text] [--target generic|claude-code|codex|opencode|gemini-cli|openclaw|hermes --dest ROOT] [--uninstall DIR] [--dry-run] [--yes] [--lang ru|en]\n`);
+    output.write(`Expert Panel installer [--format agent|web-skill|universal-zip|universal-text] [--target generic|claude-code|codex|opencode|gemini-cli|openclaw|hermes --dest ROOT] [--agents-dest DIR --agents-format json|md] [--uninstall DIR] [--dry-run] [--yes] [--lang ru|en]\n`);
     return;
   }
   const source = await findPayload(args.source);
@@ -304,22 +300,7 @@ async function main() {
     return;
   }
 
-  if (args.plugin) {
-    const repo = await findRepoRoot();
-    const bundled = join(dirname(fileURLToPath(import.meta.url)), 'package-payload', 'plugins', 'setup_plugin.py');
-    const script = repo ? join(repo, 'scripts/plugins/setup_plugin.py') : bundled;
-    const commandArgs = [script, '--target', args.plugin];
-    for (const [flag, value] of [['--skills-dest', args['skills-dest']], ['--agents-dest', args['agents-dest']], ['--plugin-dest', args['plugin-dest']]]) {
-      if (value) commandArgs.push(flag, value);
-    }
-    if (args['dry-run']) commandArgs.push('--dry-run');
-    if (args.yes) commandArgs.push('--yes');
-    await new Promise((res, rej) => {
-      const proc = spawn('python', commandArgs, { stdio: 'inherit' });
-      proc.on('close', code => code === 0 ? res() : rej(new Error(`Plugin installer failed with code ${code}`)));
-    });
-    return;
-  }
+  if (args.plugin) throw new Error('Plugin installation is disabled. Use the skill plus JSON or Markdown subagent profile.');
 
   if (args.format) {
     if (args.format === 'agent') {
@@ -327,10 +308,20 @@ async function main() {
       const res = await install(source, dest, { yes: args.yes, dryRun: args['dry-run'], ru });
       if (args['agents-dest'] && !args['dry-run']) {
         const agentsDest = resolve(args['agents-dest']);
+        if (await lstat(agentsDest).then(() => true).catch(() => false)) throw new Error('Subagent destination exists; refusing overwrite');
         await mkdir(agentsDest, { recursive: true });
-        const srcAgents = join(source, 'agents');
-        for (const af of await readdir(srcAgents)) {
-          if (af.endsWith('.json')) await copyFile(join(srcAgents, af), join(agentsDest, af));
+        if ((args['agents-format'] || 'json') === 'json') {
+          const srcAgents = join(source, 'agents');
+          for (const af of await readdir(srcAgents)) {
+            if (af.endsWith('.json')) await copyFile(join(srcAgents, af), join(agentsDest, af));
+          }
+        } else {
+          const renderer = join(dirname(fileURLToPath(import.meta.url)), '..', 'render_host_agents.py');
+          const host = (args.target || 'generic') === 'claude-code' ? 'claude-code' : 'opencode';
+          await new Promise((res, rej) => {
+            const proc = spawn('python', [renderer, '--host', host, '--source', source, '--dest', agentsDest], { stdio: 'inherit' });
+            proc.on('close', code => code === 0 ? res() : rej(new Error(`Agent renderer failed with code ${code}`)));
+          });
         }
       }
       output.write(JSON.stringify(res, null, 2) + '\n');

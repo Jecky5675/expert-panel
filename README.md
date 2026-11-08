@@ -62,7 +62,7 @@ Install the Expert Panel skill from https://github.com/Jecky5675/expert-panel.
 4. Install only the native format supported by this host.
 5. If the host supports Agent Skills, install skills/expert-panel/SKILL.md and its references.
 6. If the host supports native subagents, render/install the matching host-native agents.
-7. Do not install a fake plugin format. If plugin support is not verified, use the direct skill or solo profile.
+7. Do not install plugins. Use the direct skill or solo profile; choose JSON or Markdown only for subagents.
 8. Do not overwrite existing files. Show the destination and verify the installed files after copying.
 9. Report exactly what was installed and where.
 ```

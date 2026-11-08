@@ -52,7 +52,7 @@ Do not activate for a simple fact, an unrelated routine rewrite, a direct calcul
 
 ## 3. Capability profile
 
-Before routing, identify available capabilities without relying on vendor or model names. Use [capability profiles](references/capability_profiles.md) to distinguish plugin, direct-agent, solo, and web delivery; a copied manifest never proves host activation.
+Before routing, identify available capabilities without relying on vendor or model names. Use [capability profiles](references/capability_profiles.md) to distinguish native host adapters, direct-agent, solo, and web delivery; a copied manifest never proves host activation. New installations do not install plugins; legacy plugin markers are handled only for safe cleanup.
 
 For long tasks, maintain [a state capsule](references/state_capsule.md) and restore it before loading large references. Preserve evidence and unresolved conflicts, not private prompts or hidden reasoning.
 
