@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="420" viewBox="0 0 1200 420" role="img" aria-labelledby="title desc">
+  <title id="title">Expert Panel — универсальный ИИ-воркфлоу</title>
+  <desc id="desc">Тёмный баннер с описанием режимов Expert Panel (Прямой ответ, Специалист, Экспертный совет) и этапов проверки.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0B1118"/>
+      <stop offset="1" stop-color="#111827"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#5EEAD4"/>
+      <stop offset="1" stop-color="#60A5FA"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="420" rx="28" fill="url(#bg)"/>
+  <path d="M0 342 C220 280 350 410 600 340 C850 270 980 370 1200 300 V420 H0 Z" fill="#0F172A" opacity="0.72"/>
+  <path d="M63 72 H503" stroke="#243244" stroke-width="1"/>
+  <circle cx="63" cy="72" r="5" fill="#5EEAD4"/>
+
+  <g transform="translate(64 54)">
+    <text x="18" y="24" fill="#94A3B8" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" letter-spacing="2">УНИВЕРСАЛЬНЫЙ СКИЛЛ · 4 ФОРМАТА ПОСТАВКИ</text>
+    <text x="0" y="112" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="62" font-weight="760">Совет Экспертов</text>
+    <rect x="0" y="132" width="166" height="6" rx="3" fill="url(#accent)"/>
+    <text x="0" y="184" fill="#CBD5E1" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="24">Многоаспектный разбор решений, аудит,</text>
+    <text x="0" y="219" fill="#CBD5E1" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="24">пентест, сопровождение идей и проверенные выводы.</text>
+
+    <g transform="translate(0 258)">
+      <rect width="126" height="42" rx="21" fill="#101F2B" stroke="#5EEAD4"/>
+      <text x="63" y="27" text-anchor="middle" fill="#CCFBF1" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="700">ПРЯМОЙ</text>
+      <rect x="140" width="160" height="42" rx="21" fill="#111D32" stroke="#60A5FA"/>
+      <text x="220" y="27" text-anchor="middle" fill="#DBEAFE" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="700">СПЕЦИАЛИСТ</text>
+      <rect x="314" width="130" height="42" rx="21" fill="#211832" stroke="#A78BFA"/>
+      <text x="379" y="27" text-anchor="middle" fill="#EDE9FE" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="700">СОВЕТ</text>
+    </g>
+
+    <text x="0" y="340" fill="#64748B" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17">v27.3.0 · установка и экспорт в одну команду (npx / pipx)</text>
+  </g>
+
+  <g transform="translate(660 54)">
+    <rect width="472" height="310" rx="24" fill="#0B1220" stroke="#243244"/>
+    <text x="30" y="42" fill="#94A3B8" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" letter-spacing="1.5">КАК ЭТО РАБОТАЕТ</text>
+
+    <g transform="translate(30 66)">
+      <rect width="122" height="58" rx="14" fill="#13202C" stroke="#5EEAD4"/>
+      <text x="61" y="25" text-anchor="middle" fill="#94A3B8" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15">01</text>
+      <text x="61" y="46" text-anchor="middle" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="19" font-weight="650">Маршрут</text>
+
+      <path d="M122 29 H154" stroke="#475569" stroke-width="2"/>
+      <path d="M148 23 L158 29 L148 35" fill="none" stroke="#475569" stroke-width="2"/>
+
+      <g transform="translate(160 0)">
+        <rect width="126" height="58" rx="14" fill="#121B2D" stroke="#60A5FA"/>
+        <text x="63" y="25" text-anchor="middle" fill="#94A3B8" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15">02</text>
+        <text x="63" y="46" text-anchor="middle" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="19" font-weight="650">Ракурсы</text>
+      </g>
+
+      <path d="M286 29 H318" stroke="#475569" stroke-width="2"/>
+      <path d="M312 23 L322 29 L312 35" fill="none" stroke="#475569" stroke-width="2"/>
+
+      <g transform="translate(324 0)">
+        <rect width="88" height="58" rx="14" fill="#20172F" stroke="#A78BFA"/>
+        <text x="44" y="25" text-anchor="middle" fill="#94A3B8" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15">03</text>
+        <text x="44" y="46" text-anchor="middle" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="19" font-weight="650">Критика</text>
+      </g>
+    </g>
+
+    <g transform="translate(30 150)">
+      <rect width="126" height="94" rx="16" fill="#101827" stroke="#334155"/>
+      <circle cx="28" cy="28" r="8" fill="#5EEAD4"/>
+      <text x="48" y="34" fill="#E2E8F0" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="18">Факты</text>
+      <text x="22" y="66" fill="#94A3B8" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14">источники</text>
+
+      <g transform="translate(143 0)">
+        <rect width="126" height="94" rx="16" fill="#101827" stroke="#334155"/>
+        <circle cx="28" cy="28" r="8" fill="#60A5FA"/>
+        <text x="48" y="34" fill="#E2E8F0" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="18">Риски</text>
+        <text x="22" y="66" fill="#94A3B8" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14">модель атаки</text>
+      </g>
+
+      <g transform="translate(286 0)">
+        <rect width="126" height="94" rx="16" fill="#101827" stroke="#334155"/>
+        <circle cx="28" cy="28" r="8" fill="#A78BFA"/>
+        <text x="48" y="34" fill="#E2E8F0" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="18">Решение</text>
+        <text x="22" y="66" fill="#94A3B8" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14">точный тест</text>
+      </g>
+    </g>
+
+    <g transform="translate(30 264)">
+      <path d="M0 14 H306" stroke="#334155" stroke-width="2"/>
+      <circle cx="0" cy="14" r="5" fill="#5EEAD4"/>
+      <circle cx="153" cy="14" r="5" fill="#60A5FA"/>
+      <circle cx="306" cy="14" r="5" fill="#A78BFA"/>
+      <rect x="322" y="-10" width="90" height="48" rx="14" fill="#112A26" stroke="#34D399"/>
+      <text x="367" y="20" text-anchor="middle" fill="#D1FAE5" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="18" font-weight="700">Итог</text>
+    </g>
+  </g>
+</svg>

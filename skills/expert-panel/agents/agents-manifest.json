@@ -1,0 +1,12 @@
+{
+  "version": "27.3.0",
+  "description": "Specialized subagents for autonomous AI agent hosts controlled by Expert Panel",
+  "agents": [
+    "expert-architect",
+    "expert-security-hunter",
+    "expert-auditor",
+    "expert-adversary",
+    "expert-synthesizer",
+    "expert-mentor"
+  ]
+}

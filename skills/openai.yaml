@@ -1,0 +1,4 @@
+interface:
+  display_name: "Expert Panel"
+  short_description: "Flexible reviews, research, and specialist workflows"
+  default_prompt: "Use $expert-panel to choose a direct answer, focused specialist, or broader review. Preserve safe utility, follow platform rules, use only authorized tools and data, and keep the result readable."

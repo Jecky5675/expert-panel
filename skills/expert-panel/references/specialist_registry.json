@@ -1,0 +1,654 @@
+{
+  "schema_version": "1.0",
+  "purpose": "Capability routing inventory. Discovery never proves activation, trust, licensing, or execution.",
+  "resolution_order": [
+    "EXACT_HOST_SKILL",
+    "BUNDLED_FULL",
+    "BUNDLED_COMPACT",
+    "REMOTE_REFERENCE"
+  ],
+  "thinking_modes": {
+    "BRAINSTORM": "references/thinking_modes.md#brainstorm",
+    "CRITIQUE": "references/thinking_modes.md#critique",
+    "DECISION": "references/thinking_modes.md#decision",
+    "PRE_MORTEM": "references/thinking_modes.md#pre-mortem",
+    "LEARN": "references/thinking_modes.md#learn"
+  },
+  "optional_integrations": {
+    "local_vibe_security_mcp": {
+      "status": "reference_only_not_bundled",
+      "reason": "Donor source has no license file; do not copy, install, invoke, or redistribute it without a license grant and explicit user approval.",
+      "fallback": "references/offensive_security.md"
+    },
+    "ub_mode_quality_tools": {
+      "status": "principles_only",
+      "tools": [
+        "crapper",
+        "dryer",
+        "mutator",
+        "uml-viewer"
+      ],
+      "reason": "Companion tools are external, optional, and not bundled dependencies."
+    }
+  },
+  "roles": {
+    "architecture": {
+      "aliases": [
+        "dddsoftware-architecture",
+        "project-planner"
+      ],
+      "fallback_full": "donor_practice_cards.md#architecture-ddd",
+      "fallback_compact": "references/donor_practice_cards.md#architecture",
+      "sources": [
+        "NeoLabHQ context-engineering-kit",
+        "project-planner"
+      ],
+      "github_sources": [
+        "https://github.com/NeoLabHQ/context-engineering-kit",
+        "https://github.com/Shubhamsaboo/awesome-llm-apps"
+      ]
+    },
+    "research": {
+      "aliases": [
+        "deep-research",
+        "deep-research-pro",
+        "academic-researcher"
+      ],
+      "fallback_full": "vendor/research-first-builder/SKILL.md",
+      "fallback_compact": "references/donor_practice_cards.md#research",
+      "sources": [
+        "deep-research",
+        "standardhuman-deep-research",
+        "Shubhamsaboo academic-researcher"
+      ],
+      "github_sources": [
+        "https://github.com/Shubhamsaboo/awesome-llm-apps",
+        "https://github.com/IT-Shelter-Labs/research-first-builder"
+      ]
+    },
+    "fact_checking": {
+      "aliases": [
+        "fact-checker"
+      ],
+      "fallback_full": "references/evidence_and_research.md",
+      "fallback_compact": "references/donor_practice_cards.md#fact-checking",
+      "sources": [
+        "Shubhamsaboo fact-checker"
+      ],
+      "github_sources": [
+        "https://github.com/Shubhamsaboo/awesome-llm-apps"
+      ]
+    },
+    "product_discovery": {
+      "aliases": [
+        "product-test",
+        "product-tester",
+        "project-planner"
+      ],
+      "fallback_full": "vendor/methodweft/entry-and-mentoring.md",
+      "fallback_compact": "references/donor_practice_cards.md#product-discovery",
+      "sources": [
+        "product-test",
+        "product-tester",
+        "project-planner"
+      ],
+      "github_sources": [
+        "https://github.com/phuryn/pm-skills",
+        "https://github.com/covelab/product-tester"
+      ]
+    },
+    "qa": {
+      "aliases": [
+        "product-test",
+        "product-tester",
+        "webapp-testing",
+        "gate"
+      ],
+      "fallback_full": "vendor/security-audit/VALIDATION-AND-REPORTING.md",
+      "fallback_compact": "references/donor_practice_cards.md#qa",
+      "sources": [
+        "product-test",
+        "product-tester",
+        "Anthropic skills",
+        "ux-ui-agent-skills"
+      ],
+      "github_sources": [
+        "https://github.com/covelab/product-tester",
+        "https://github.com/anthropics/skills"
+      ]
+    },
+    "offensive_security": {
+      "aliases": [
+        "abusing-dpapi-for-credential-access",
+        "abusing-shadow-credentials-for-privesc",
+        "analyzing-active-directory-acl-abuse",
+        "analyzing-android-malware-with-apktool",
+        "analyzing-api-gateway-access-logs",
+        "analyzing-apt-group-with-mitre-navigator",
+        "analyzing-azure-activity-logs-for-threats",
+        "analyzing-bootkit-and-rootkit-samples",
+        "analyzing-browser-forensics-with-hindsight",
+        "analyzing-campaign-attribution-evidence",
+        "analyzing-certificate-transparency-for-phishing",
+        "analyzing-cloud-storage-access-patterns",
+        "analyzing-cobalt-strike-beacon-configuration",
+        "analyzing-cobaltstrike-malleable-c2-profiles",
+        "analyzing-command-and-control-communication",
+        "analyzing-cyber-kill-chain",
+        "analyzing-disk-image-with-autopsy",
+        "analyzing-dns-logs-for-exfiltration",
+        "analyzing-docker-container-forensics",
+        "analyzing-email-headers-for-phishing-investigation",
+        "analyzing-ethereum-smart-contract-vulnerabilities",
+        "analyzing-golang-malware-with-ghidra",
+        "analyzing-heap-spray-exploitation",
+        "analyzing-indicators-of-compromise",
+        "analyzing-ios-app-security-with-objection",
+        "analyzing-kubernetes-audit-logs",
+        "analyzing-linux-audit-logs-for-intrusion",
+        "analyzing-linux-elf-malware",
+        "analyzing-linux-kernel-rootkits",
+        "analyzing-linux-system-artifacts",
+        "analyzing-macro-malware-in-office-documents",
+        "analyzing-malicious-pdf-with-peepdf",
+        "analyzing-malware-persistence-with-autoruns",
+        "analyzing-memory-dumps-with-volatility",
+        "assessing-vector-and-embedding-weaknesses",
+        "attacking-entra-id-with-roadtools",
+        "attacking-oauth-with-device-code-phishing",
+        "auditing-aws-s3-bucket-permissions",
+        "auditing-azure-active-directory-configuration",
+        "auditing-entra-id-with-aadinternals",
+        "auditing-foundry-smart-contract-security",
+        "auditing-gcp-iam-permissions",
+        "auditing-kubernetes-cluster-rbac",
+        "auditing-kubernetes-rbac-privilege-escalation",
+        "auditing-mcp-servers-for-tool-poisoning",
+        "auditing-terraform-infrastructure-for-security",
+        "offensive-security",
+        "security-audit",
+        "vibe-security-audit"
+      ],
+      "fallback_full": "references/offensive_security.md",
+      "fallback_compact": "references/donor_practice_cards.md#offensive-security",
+      "sources": [
+        "Cloudflare security-audit-skill",
+        "agent-skill vibe-security-audit",
+        "Anthropic Cybersecurity Skills (selected defensive/authorized modules)"
+      ],
+      "authorization": "required for active testing",
+      "github_sources": [
+        "https://github.com/cloudflare/security-audit-skill",
+        "https://github.com/anthropics/anthropic-quickstarts"
+      ]
+    },
+    "ui_ux": {
+      "aliases": [
+        "frontend-design",
+        "ux-ui-icon-agent",
+        "design-review",
+        "design-screen",
+        "web-component-design"
+      ],
+      "fallback_full": "references/role_registry.md",
+      "fallback_compact": "references/donor_practice_cards.md#ui-ux",
+      "sources": [
+        "Anthropic skills",
+        "ux-ui-agent-skills",
+        "ux-ui-icon-agent",
+        "web-component-design"
+      ],
+      "github_sources": [
+        "https://github.com/anthropics/skills",
+        "https://github.com/plugin87/ux-ui-agent-skills"
+      ]
+    },
+    "accessibility": {
+      "aliases": [
+        "a11y-audit",
+        "design-qa",
+        "antislop-human",
+        "antislop-layoutmobile"
+      ],
+      "fallback_full": "references/role_registry.md",
+      "fallback_compact": "references/donor_practice_cards.md#accessibility",
+      "sources": [
+        "ux-ui-agent-skills",
+        "anti-slop"
+      ],
+      "github_sources": [
+        "https://github.com/miqdadbadjuber/anti-slop",
+        "https://github.com/plugin87/ux-ui-agent-skills"
+      ]
+    },
+    "data_visualization": {
+      "aliases": [
+        "data-analyst",
+        "visualization-expert",
+        "data-dashboard"
+      ],
+      "fallback_full": "references/evidence_and_research.md",
+      "fallback_compact": "references/donor_practice_cards.md#data-visualization",
+      "sources": [
+        "data-analyst",
+        "visualization-expert",
+        "ux-ui-agent-skills"
+      ],
+      "github_sources": [
+        "https://github.com/Shubhamsaboo/awesome-llm-apps",
+        "https://github.com/plugin87/ux-ui-agent-skills"
+      ]
+    },
+    "prompt_harness": {
+      "aliases": [
+        "prompt-engineer",
+        "skill-conductor",
+        "context-engineering"
+      ],
+      "fallback_full": "references/prompt_engineering.md",
+      "fallback_compact": "references/donor_practice_cards.md#prompt-harness",
+      "sources": [
+        "prompt-engineer",
+        "skill-conductor",
+        "context-engineering"
+      ],
+      "github_sources": [
+        "https://github.com/smixs/skill-conductor"
+      ]
+    },
+    "documents": {
+      "aliases": [
+        "docx",
+        "pdf",
+        "xlsx",
+        "pptx",
+        "oil-ppt"
+      ],
+      "fallback_full": "references/output_contracts.md",
+      "fallback_compact": "references/donor_practice_cards.md#documents",
+      "sources": [
+        "Anthropic skills main",
+        "oil-ppt"
+      ],
+      "github_sources": [
+        "https://github.com/anthropics/skills",
+        "https://github.com/oil-oil/oil-ppt"
+      ]
+    },
+    "readme": {
+      "aliases": [
+        "beautify-github-readme"
+      ],
+      "fallback_full": "references/github_readme_studio.md",
+      "fallback_compact": "references/donor_practice_cards.md#readme",
+      "sources": [
+        "beautify-github-readme"
+      ],
+      "github_sources": [
+        "https://github.com/oil-oil/beautify-github-readme"
+      ]
+    },
+    "icons_visual_assets": {
+      "aliases": [
+        "oil-icon",
+        "logo-design",
+        "visualization-expert"
+      ],
+      "fallback_full": "references/readme_visual_direction.md",
+      "fallback_compact": "references/donor_practice_cards.md#icons-visual-assets",
+      "sources": [
+        "oil-icon",
+        "logo-design"
+      ],
+      "github_sources": [
+        "https://github.com/oil-oil/oil-icon",
+        "https://github.com/kaankiziltug/logo-design-skill"
+      ]
+    },
+    "mcp_tools": {
+      "aliases": [
+        "mcp-builder",
+        "mcp-server-fixed"
+      ],
+      "fallback_full": "references/skill_composition.md",
+      "fallback_compact": "references/donor_practice_cards.md#mcp-tools",
+      "sources": [
+        "Anthropic mcp-builder",
+        "mcp-server-fixed"
+      ],
+      "github_sources": [
+        "https://github.com/anthropics/skills"
+      ]
+    },
+    "stack_python": {
+      "aliases": [
+        "python-pro"
+      ],
+      "fallback_full": "references/role_registry.md",
+      "fallback_compact": "references/donor_practice_cards.md#stack-python",
+      "sources": [
+        "Jeffallan python-pro"
+      ],
+      "github_sources": [
+        "https://github.com/Jeffallan/claude-skills"
+      ]
+    },
+    "stack_cpp": {
+      "aliases": [
+        "cpp-pro"
+      ],
+      "fallback_full": "references/role_registry.md",
+      "fallback_compact": "references/donor_practice_cards.md#stack-cpp",
+      "sources": [
+        "Jeffallan cpp-pro"
+      ],
+      "github_sources": [
+        "https://github.com/Jeffallan/claude-skills"
+      ]
+    },
+    "stack_dotnet": {
+      "aliases": [
+        "csharp-developer",
+        "dotnet-core-expert"
+      ],
+      "fallback_full": "references/role_registry.md",
+      "fallback_compact": "references/donor_practice_cards.md#stack-dotnet",
+      "sources": [
+        "Jeffallan csharp-developer",
+        "Jeffallan dotnet-core-expert"
+      ],
+      "github_sources": [
+        "https://github.com/Jeffallan/claude-skills"
+      ]
+    },
+    "stack_react_next": {
+      "aliases": [
+        "react-expert",
+        "nextjs-developer",
+        "react-dev"
+      ],
+      "fallback_full": "references/role_registry.md",
+      "fallback_compact": "references/donor_practice_cards.md#stack-react-next",
+      "sources": [
+        "Jeffallan react-expert",
+        "Jeffallan nextjs-developer",
+        "Softaworks react-dev"
+      ],
+      "github_sources": [
+        "https://github.com/Jeffallan/claude-skills"
+      ]
+    },
+    "game_modding": {
+      "aliases": [
+        "asset-pipeline",
+        "fal-assets",
+        "game-automation",
+        "game-recon",
+        "mashup-mods",
+        "mod-any-game",
+        "publish-mod",
+        "reverse-engineering"
+      ],
+      "fallback_full": "vendor/README.md",
+      "fallback_compact": "references/donor_practice_cards.md#game-modding",
+      "sources": [
+        "universal-modder"
+      ],
+      "github_sources": [
+        "https://github.com/rehan-remade/universal-modder"
+      ]
+    },
+    "theme_design": {
+      "aliases": [
+        "theme-factory",
+        "brand-guidelines",
+        "algorithmic-art"
+      ],
+      "fallback_full": "references/readme_visual_direction.md",
+      "fallback_compact": "references/donor_practice_cards.md#theme-design",
+      "sources": [
+        "Anthropic theme-factory",
+        "Anthropic brand-guidelines"
+      ],
+      "github_sources": [
+        "https://github.com/anthropics/skills"
+      ]
+    },
+    "web_artifacts": {
+      "aliases": [
+        "web-artifacts-builder",
+        "canvas-design"
+      ],
+      "fallback_full": "references/role_registry.md",
+      "fallback_compact": "references/donor_practice_cards.md#web-artifacts",
+      "sources": [
+        "Anthropic web-artifacts-builder",
+        "Anthropic canvas-design"
+      ],
+      "github_sources": [
+        "https://github.com/anthropics/skills"
+      ]
+    },
+    "methodweft_mentoring": {
+      "aliases": [
+        "methodweft-agent",
+        "methodweft-web",
+        "methodweft-claude",
+        "methodweft-codex",
+        "methodweft-gemini-cli"
+      ],
+      "fallback_full": "vendor/methodweft/entry-and-mentoring.md",
+      "fallback_compact": "references/donor_practice_cards.md#methodweft-mentoring",
+      "sources": [
+        "MethodWeft v0.14.0 Skill contributors"
+      ],
+      "github_sources": [
+        "https://github.com/phuryn/pm-skills",
+        "https://github.com/sanic732/P2P"
+      ]
+    },
+    "research_first_builder": {
+      "aliases": [
+        "research-first-build",
+        "research-first-builder"
+      ],
+      "fallback_full": "vendor/research-first-builder/SKILL.md",
+      "fallback_compact": "references/donor_practice_cards.md#research-first-builder",
+      "sources": [
+        "IT Shelter research-first-builder"
+      ],
+      "github_sources": [
+        "https://github.com/IT-Shelter-Labs/research-first-builder"
+      ]
+    },
+    "stack_ui_frameworks": {
+      "aliases": [
+        "mui",
+        "softaworks-mui"
+      ],
+      "fallback_full": "references/role_registry.md",
+      "fallback_compact": "references/donor_practice_cards.md#stack-ui-frameworks",
+      "sources": [
+        "Softaworks agent-toolkit skills-mui"
+      ],
+      "github_sources": [
+        "https://github.com/softaworks/agent-toolkit"
+      ]
+    },
+    "cybersecurity_deep_tactics": {
+      "aliases": [
+        "cloud-audit-iam",
+        "auditing-aws-s3-bucket-permissions",
+        "auditing-gcp-iam-permissions",
+        "ad-privesc-audit",
+        "analyzing-active-directory-acl-abuse",
+        "smart-contract-audit",
+        "auditing-foundry-smart-contract-security",
+        "reverse-engineering-malware",
+        "analyzing-golang-malware-with-ghidra",
+        "dfir-forensics",
+        "analyzing-memory-dumps-with-volatility",
+        "sbom-supply-chain-audit",
+        "analyzing-sbom-for-supply-chain-vulnerabilities"
+      ],
+      "fallback_full": "references/offensive_security.md",
+      "fallback_compact": "references/donor_practice_cards.md#cybersecurity-deep-tactics",
+      "sources": [
+        "Anthropic-Cybersecurity-Skills-1.3.0 (Apache-2.0)"
+      ],
+      "authorization": "strictly required for active engagements",
+      "github_sources": [
+        "https://github.com/cloudflare/security-audit-skill"
+      ]
+    },
+    "anti_slop_design": {
+      "aliases": [
+        "antislop",
+        "antislop-ui",
+        "antislop-human",
+        "antislop-layoutmobile",
+        "antislop-code"
+      ],
+      "fallback_full": "references/role_registry.md",
+      "fallback_compact": "references/donor_practice_cards.md#anti-slop",
+      "sources": [
+        "anti-slop-main (MIT)"
+      ],
+      "github_sources": [
+        "https://github.com/miqdadbadjuber/anti-slop"
+      ]
+    },
+    "anti_slop_copywriting": {
+      "aliases": [
+        "antislop-copywriting",
+        "doc-coauthoring",
+        "internal-comms",
+        "ux-writing"
+      ],
+      "fallback_full": "references/style_and_humanization.md",
+      "fallback_compact": "references/donor_practice_cards.md#anti-slop-copywriting",
+      "sources": [
+        "anti-slop-main",
+        "skills-main doc-coauthoring"
+      ],
+      "github_sources": [
+        "https://github.com/miqdadbadjuber/anti-slop"
+      ]
+    },
+    "design_systems_tokens": {
+      "aliases": [
+        "design-tokens",
+        "brandkit",
+        "figma-integration",
+        "migrate-design-system",
+        "design-code",
+        "token-build",
+        "design-doctrine"
+      ],
+      "fallback_full": "references/role_registry.md",
+      "fallback_compact": "references/donor_practice_cards.md#design-systems-tokens",
+      "sources": [
+        "ux-ui-agent-skills-3.0.0 (MIT)"
+      ],
+      "github_sources": [
+        "https://github.com/plugin87/ux-ui-agent-skills"
+      ]
+    },
+    "claude_api_reference": {
+      "aliases": [
+        "claude-api",
+        "academy-guide",
+        "discernment-nudge",
+        "slack-gif-creator"
+      ],
+      "fallback_full": "references/skill_composition.md",
+      "fallback_compact": "references/donor_practice_cards.md#claude-api-reference",
+      "sources": [
+        "skills-main (Anthropic skills)"
+      ],
+      "github_sources": [
+        "https://github.com/anthropics/skills"
+      ]
+    },
+    "parity_porting": {
+      "aliases": [
+        "game-parity-port",
+        "parity-testing",
+        "oracle-comparator"
+      ],
+      "fallback_full": "references/donor_practice_cards.md#parity-testing--porting",
+      "fallback_compact": "references/donor_practice_cards.md#parity-testing--porting",
+      "sources": [
+        "nanomolydev game-parity-port (MIT)"
+      ],
+      "github_sources": [
+        "https://github.com/nanomolydev/game-parity-port"
+      ]
+    },
+    "compliance_isms_privacy": {
+      "aliases": [
+        "isms-audit-expert",
+        "data-privacy-compliance",
+        "gdpr-dsgvo-expert",
+        "qms-audit-expert"
+      ],
+      "fallback_full": "references/donor_practice_cards.md#enterprise-isms--compliance",
+      "fallback_compact": "references/donor_practice_cards.md#enterprise-isms--compliance",
+      "sources": [
+        "claude-code-templates-main (MIT)"
+      ],
+      "github_sources": [
+        "https://github.com/aitmpl/claude-code-templates"
+      ]
+    },
+    "database_architecture": {
+      "aliases": [
+        "database-architect",
+        "database-migration",
+        "postgres-schema-design",
+        "sql-pro",
+        "database-optimizer"
+      ],
+      "fallback_full": "references/donor_practice_cards.md#database-architecture--migration",
+      "fallback_compact": "references/donor_practice_cards.md#database-architecture--migration",
+      "sources": [
+        "claude-code-templates-main (MIT)"
+      ],
+      "github_sources": [
+        "https://github.com/aitmpl/claude-code-templates"
+      ]
+    },
+    "cloud_native_devops": {
+      "aliases": [
+        "docker-expert",
+        "kubernetes-architect",
+        "gitops-workflow",
+        "github-workflow-automation"
+      ],
+      "fallback_full": "references/donor_practice_cards.md#cloud-native--containers",
+      "fallback_compact": "references/donor_practice_cards.md#cloud-native--containers",
+      "sources": [
+        "claude-code-templates-main (MIT)"
+      ],
+      "github_sources": [
+        "https://github.com/aitmpl/claude-code-templates"
+      ]
+    },
+    "parallel_coordination": {
+      "aliases": [
+        "dispatching-parallel-agents",
+        "multi-agent-coordinator",
+        "session-handoff",
+        "planning-with-files"
+      ],
+      "fallback_full": "references/donor_practice_cards.md#parallel-agent-dispatch",
+      "fallback_compact": "references/donor_practice_cards.md#parallel-agent-dispatch",
+      "sources": [
+        "claude-code-templates-main (MIT)"
+      ],
+      "github_sources": [
+        "https://github.com/aitmpl/claude-code-templates"
+      ]
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "purpose": "Capability pack map. A pack is a bounded workflow family, not proof that every donor skill is installed or active.",
+  "status_values": ["core", "integrated_fallback", "reference_only", "experimental"],
+  "packs": {
+    "core": {
+      "status": "core",
+      "references": ["../core/host_profiles.md", "../core/role_orchestration.md", "../core/evidence_and_research.md", "../core/thinking_modes.md"]
+    },
+    "security": {
+      "status": "integrated_fallback",
+      "references": ["offensive_security.md", "security_review_prompt.md"],
+      "donor_families": ["security-audit-skill-main", "Anthropic-Cybersecurity-Skills-1.3.0"]
+    },
+    "readme_ui": {
+      "status": "integrated_fallback",
+      "references": ["readme_studio.md", "../packs/donor_practice_cards.md"],
+      "donor_families": ["beautify-github-readme-main", "antislop-main2", "ux-ui-agent-skills-3.0.0"]
+    },
+    "prompt_harness": {
+      "status": "integrated_fallback",
+      "references": ["prompt_engineering.md", "../core/skill_composition.md"],
+      "donor_families": ["prompt-engineer-v12", "skill-conductor-main", "claude-code-templates-main"]
+    },
+    "research_and_architecture": {
+      "status": "integrated_fallback",
+      "references": ["../core/evidence_and_research.md", "../core/role_registry.md"],
+      "donor_families": ["research-first-builder-main", "deep-research", "NeoLabHQ context-engineering-kit master plugins-ddd_skills_software-architecture"]
+    },
+    "database_cloud_compliance": {
+      "status": "integrated_fallback",
+      "references": ["../packs/donor_practice_cards.md", "../core/role_registry.md"],
+      "donor_families": ["claude-code-templates-main"]
+    },
+    "parity_porting": {
+      "status": "experimental",
+      "references": ["../packs/donor_practice_cards.md"],
+      "donor_families": ["game-parity-port-main"],
+      "note": "Use the original application as an oracle only when the user owns or is authorized to test it."
+    },
+    "beginner_and_handoff": {
+      "status": "integrated_fallback",
+      "references": ["beginner_guide.md", "../adapters/state_capsule.md"],
+      "donor_families": ["methodweft-v0.14.0-full (1)", "claude-code-templates-main"]
+    }
+  }
+}

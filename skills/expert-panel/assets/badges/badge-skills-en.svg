@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="168" height="20" viewBox="0 0 168 20" role="img" aria-labelledby="t d">
+  <title id="t">Agent Skills: SKILL.md</title>
+  <desc id="d">Status badge displaying Agent Skills as SKILL.md.</desc>
+  <rect width="98" height="20" fill="#334155"/>
+  <rect x="98" width="70" height="20" fill="#0D716D"/>
+  <text x="49.0" y="14" fill="#fff" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="11">Agent Skills</text>
+  <text x="133.0" y="14" fill="#fff" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="11" font-weight="bold">SKILL.md</text>
+</svg>

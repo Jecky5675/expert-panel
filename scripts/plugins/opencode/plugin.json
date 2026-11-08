@@ -1,0 +1,8 @@
+{
+  "name": "expert-panel-opencode-plugin-source",
+  "private": true,
+  "version": "27.3.0",
+  "description": "Source metadata for the OpenCode Expert Panel plugin module. Install index.mjs into the OpenCode plugin directory.",
+  "type": "module",
+  "license": "MIT"
+}

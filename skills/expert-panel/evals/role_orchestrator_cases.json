@@ -1,0 +1,87 @@
+[
+  {
+    "id": "ru-beginner-idea",
+    "prompt": "Я новичок, есть идея приложения для расписания, не знаю с чего начать.",
+    "expect": {"intent": "beginner_mentoring", "roles_contain": ["mentor", "implementation_lead"], "roles_exclude": ["synthesizer"]}
+  },
+  {
+    "id": "en-beginner-idea",
+    "prompt": "I'm a beginner and I want to build an app to track reading. How do I start?",
+    "expect": {"intent": "beginner_mentoring", "roles_contain": ["mentor"]}
+  },
+  {
+    "id": "ru-project-review",
+    "prompt": "Проверь мой проект: архитектура, безопасность и удобство для пользователей.",
+    "expect": {"intent": "project_review", "domains": ["security", "architecture", "product"], "roles_contain": ["architect", "security_reviewer", "user_advocate", "evidence_auditor", "adversary", "synthesizer"]}
+  },
+  {
+    "id": "en-project-review",
+    "prompt": "Review our repository for architecture and deployment risks before release.",
+    "expect": {"intent": "project_review", "domains": ["architecture", "delivery"], "roles_contain": ["architect", "implementation_lead", "adversary"]}
+  },
+  {
+    "id": "ru-explicit-panel",
+    "prompt": "Собери панель экспертов для ревью проекта.",
+    "expect": {"intent": "project_review", "roles_contain": ["architect", "user_advocate", "implementation_lead", "evidence_auditor", "synthesizer"]}
+  },
+  {
+    "id": "en-security-project",
+    "prompt": "Audit the security of our project in production; flag unverified findings.",
+    "expect": {"intent": "project_review", "high_stakes_signal": true, "roles_contain": ["security_reviewer", "evidence_auditor"]}
+  },
+  {
+    "id": "ru-specialist-security",
+    "prompt": "Подскажи подход к threat model для API, без аудита проекта.",
+    "expect": {"intent": "focused_specialist", "roles_contain": ["security_reviewer"], "roles_exclude": ["adversary", "synthesizer"]}
+  },
+  {
+    "id": "en-specialist-writing",
+    "prompt": "Improve this README for new contributors.",
+    "expect": {"intent": "focused_specialist", "roles_contain": ["editor"], "roles_exclude": ["architect", "adversary"]}
+  },
+  {
+    "id": "ru-specialist-implementation",
+    "prompt": "Исправь баг в функции сортировки и предложи тест.",
+    "expect": {"intent": "focused_specialist", "roles_contain": ["engineer"], "roles_exclude": ["synthesizer"]}
+  },
+  {
+    "id": "en-multi-domain",
+    "prompt": "Compare security and usability trade-offs from different perspectives for our signup flow.",
+    "expect": {"intent": "project_review", "roles_contain": ["security_reviewer", "user_advocate", "evidence_auditor"]}
+  },
+  {
+    "id": "ru-direct-greeting",
+    "prompt": "Привет, спасибо!",
+    "expect": {"intent": "direct", "domains": [], "roles_exclude": ["mentor", "architect", "synthesizer"]}
+  },
+  {
+    "id": "en-negative-informational",
+    "prompt": "What is a security audit?",
+    "expect": {"intent": "direct", "roles_exclude": ["security_reviewer", "evidence_auditor"]}
+  },
+  {
+    "id": "ru-negative-informational",
+    "prompt": "Что такое архитектура приложения?",
+    "expect": {"intent": "direct", "roles_exclude": ["architect", "mentor"]}
+  },
+  {
+    "id": "en-negative-weather",
+    "prompt": "What is the weather today?",
+    "expect": {"intent": "direct", "domains": [], "roles_exclude": ["researcher", "synthesizer"]}
+  },
+  {
+    "id": "ru-approval-action",
+    "prompt": "Опубликуй README после правок.",
+    "expect": {"intent": "focused_specialist", "approval_required_for_action": true, "roles_contain": ["editor"]}
+  },
+  {
+    "id": "en-high-stakes-single",
+    "prompt": "Explain options for a medical research question.",
+    "expect": {"intent": "direct", "high_stakes_signal": true, "roles_exclude": ["researcher", "synthesizer"]}
+  },
+  {
+    "id": "ru-vague-idea",
+    "prompt": "Есть идея сделать сервис записи к врачу, помоги определиться с первым шагом.",
+    "expect": {"intent": "beginner_mentoring", "roles_contain": ["mentor"]}
+  }
+]

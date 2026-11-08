@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "checked_at": "2026-08-04T07:30:00+00:00",
+  "sources": [
+    {
+      "id": "beautify-github-readme",
+      "repository": "oil-oil/beautify-github-readme",
+      "branch": "main",
+      "integrated_commit": "55bdb1c05414cd7a0cf911d02e55ece79777206e",
+      "commit_date": "2026-07-27T06:24:01Z",
+      "upstream_version": null,
+      "license_file": "THIRD_PARTY_LICENSES/beautify-github-readme-MIT.txt",
+      "status_at_review": "current",
+      "notes": "Rechecked for v25.8.1. The pinned snapshot remains the bundled portable fallback; a separately installed full skill is preferred when the host exposes it.",
+      "tracking_mode": "specialist-integration"
+    },
+    {
+      "id": "humanizer",
+      "repository": "blader/humanizer",
+      "branch": "main",
+      "integrated_commit": "523374dee72d67c7b2b5f858ea0094ffda49c3ac",
+      "commit_date": "2026-07-22T06:25:52Z",
+      "upstream_version": "2.9.1",
+      "license_file": "THIRD_PARTY_LICENSES/humanizer-MIT.txt",
+      "status_at_review": "current",
+      "notes": "Safety-adapted for v25.9.2; upstream content remains pinned at 523374dee72d67c7b2b5f858ea0094ffda49c3ac (v2.9.1). Bundled fallback embeds the full 33-pattern SKILL body with Expert Panel composition preflight and language/locale guardrails. Prefer a separately installed humanizer skill when the host exposes it.",
+      "tracking_mode": "specialist-integration"
+    },
+    {
+      "id": "p2p-4pda-edition",
+      "repository": "sanic732/P2P-4PDA-edition",
+      "branch": "main",
+      "integrated_commit": "8e29a0802a7e193f965fa8bde7326a5a5f54f502",
+      "commit_date": "2026-07-26T12:12:47Z",
+      "upstream_version": "8.4.6-N",
+      "license_file": "THIRD_PARTY_LICENSES/p2p-4pda-edition-MIT.txt",
+      "tracking_mode": "methodology-advisory",
+      "status_at_review": "current",
+      "notes": "Advisory methodology source. New commits are reported without failing the default check. Rapidly changing model/provider data is ignored by default; only stable methodology changes are candidates for manual integration.",
+      "default_action": "ignore-unless-stable-methodology-change",
+      "review_topics": [
+        "scope and success criteria",
+        "capability-based routing",
+        "context compression and state handoff",
+        "tool budgets and failure handling",
+        "evaluation and regression methods"
+      ],
+      "ignored_by_default": [
+        "model catalogs, rankings, and recommended model assignments",
+        "prices and billing details",
+        "token and context-window limits",
+        "provider availability, release dates, and deprecation dates",
+        "vendor-specific syntax, API parameters, and host workarounds",
+        "edition packaging and menu changes that do not affect Expert Panel methodology"
+      ]
+    },
+    {
+      "id": "claude-code-templates",
+      "repository": "aitmpl/claude-code-templates",
+      "branch": "main",
+      "integrated_commit": "verified-snapshot",
+      "commit_date": "2026-11-01T23:02:00Z",
+      "upstream_version": "1.0.0",
+      "license_file": "docs/licenses/claude-code-templates-MIT.txt",
+      "tracking_mode": "specialist-integration",
+      "status_at_review": "current",
+      "notes": "Selected workflows for parallel agent dispatch, planning-with-files, session handoffs, compliance, database architecture, and container optimization."
+    },
+    {
+      "id": "game-parity-port",
+      "repository": "nanomolydev/game-parity-port",
+      "branch": "main",
+      "integrated_commit": "verified-snapshot",
+      "commit_date": "2026-11-08T02:49:00Z",
+      "upstream_version": "1.0.0",
+      "license_file": "docs/licenses/game-parity-port-MIT.txt",
+      "tracking_mode": "specialist-integration",
+      "status_at_review": "current",
+      "notes": "Oracle-based tick-exact replay comparison and deterministic porting verification methodology."
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "payload": "skills/expert-panel",
+  "commands": [
+    "python scripts/audit_release.py",
+    "python scripts/validate_skill.py skills/expert-panel",
+    "python scripts/tests/run_evals.py skills/expert-panel",
+    "python scripts/role_orchestrator.py --check-cases",
+    "python scripts/tests/self_test.py skills/expert-panel",
+    "python scripts/tests/audit_readme.py README.md --root . --strict",
+    "python scripts/export_formats.py --format all --output <temp>"
+  ]
+}

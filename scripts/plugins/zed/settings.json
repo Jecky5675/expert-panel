@@ -1,0 +1,14 @@
+{
+  "$schema": "https://zed.dev/schema/settings.json",
+  "assistant": {
+    "default_model": {
+      "provider": "anthropic",
+      "model": "claude-3-7-sonnet"
+    },
+    "version": "2"
+  },
+  "expert_panel": {
+    "skill_path": "~/.agents/skills/expert-panel",
+    "subagents_path": "~/.config/zed/agents"
+  }
+}

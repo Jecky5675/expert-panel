@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="105" height="20" viewBox="0 0 105 20" role="img" aria-labelledby="t d">
+  <title id="t">Practices: 33</title>
+  <desc id="d">Status badge displaying Practices as 33.</desc>
+  <rect width="77" height="20" fill="#334155"/>
+  <rect x="77" width="28" height="20" fill="#C18B4D"/>
+  <text x="38.5" y="14" fill="#fff" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="11">Practices</text>
+  <text x="91.0" y="14" fill="#fff" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="11" font-weight="bold">33</text>
+</svg>

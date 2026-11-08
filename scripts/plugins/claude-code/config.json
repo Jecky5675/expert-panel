@@ -1,0 +1,44 @@
+{
+  "name": "claude-code-expert-panel",
+  "version": "27.3.0",
+  "description": "Claude Code agent configuration and subagent definitions for Expert Panel",
+  "skills": ["skills/expert-panel"],
+  "subagents": {
+    "architect": {
+      "name": "Expert Architect",
+      "prompt": "skills/expert-panel/agents/expert-architect.json",
+      "tools": ["Read", "Glob", "Grep"],
+      "model": "claude-3-7-sonnet"
+    },
+    "security-hunter": {
+      "name": "Expert Security Hunter",
+      "prompt": "skills/expert-panel/agents/expert-security-hunter.json",
+      "tools": ["Read", "Glob", "Grep", "Bash"],
+      "model": "claude-3-7-sonnet"
+    },
+    "auditor": {
+      "name": "Evidence Auditor",
+      "prompt": "skills/expert-panel/agents/expert-auditor.json",
+      "tools": ["Read", "Glob", "Grep"],
+      "model": "claude-3-5-sonnet"
+    },
+    "adversary": {
+      "name": "Adversary & Pre-Mortem",
+      "prompt": "skills/expert-panel/agents/expert-adversary.json",
+      "tools": ["Read", "Glob", "Grep"],
+      "model": "claude-3-7-sonnet"
+    },
+    "synthesizer": {
+      "name": "Synthesizer",
+      "prompt": "skills/expert-panel/agents/expert-synthesizer.json",
+      "tools": ["Read"],
+      "model": "claude-3-7-sonnet"
+    },
+    "mentor": {
+      "name": "Beginner Mentor",
+      "prompt": "skills/expert-panel/agents/expert-mentor.json",
+      "tools": ["Read", "Write", "Edit"],
+      "model": "claude-3-5-sonnet"
+    }
+  }
+}

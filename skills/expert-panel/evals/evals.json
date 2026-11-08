@@ -1,0 +1,796 @@
+[
+  {
+    "id": "explicit_ru",
+    "prompt": "Запусти панель экспертов и оцени архитектуру приложения, риски безопасности и план внедрения.",
+    "expect": {
+      "trigger": true,
+      "depth": "STANDARD",
+      "execution": "panel",
+      "overlays_contains": [
+        "SECURITY",
+        "PLAN"
+      ]
+    }
+  },
+  {
+    "id": "deep_audit",
+    "prompt": "Проведи глубокий комплексный аудит production-системы с актуальной проверкой законов, зависимостей и доказательств. Это необратимое решение с финансовыми и юридическими последствиями.",
+    "expect": {
+      "trigger": true,
+      "depth": "DEEP",
+      "overlays_contains": [
+        "AUDIT",
+        "VERIFY"
+      ]
+    }
+  },
+  {
+    "id": "simple_fact",
+    "prompt": "Какова столица Франции?",
+    "expect": {
+      "trigger": false,
+      "depth": "DIRECT",
+      "execution": "direct"
+    }
+  },
+  {
+    "id": "simple_code",
+    "prompt": "Напиши функцию Python для разворота строки.",
+    "expect": {
+      "trigger": false,
+      "depth": "DIRECT"
+    }
+  },
+  {
+    "id": "forecast",
+    "prompt": "Сделай многосценарный прогноз рынка и стратегический план с учетом рисков и текущих данных.",
+    "expect": {
+      "trigger": true,
+      "depth": "STANDARD",
+      "overlays_contains": [
+        "FORECAST",
+        "PLAN"
+      ]
+    }
+  },
+  {
+    "id": "prompt_specialist",
+    "prompt": "Улучши этот системный промпт и добавь проверяемый формат ответа.",
+    "expect": {
+      "trigger": true,
+      "depth": "QUICK",
+      "execution": "specialist",
+      "specialist_route": "PROMPT_ENGINEER",
+      "overlays_contains": [
+        "PROMPT_ENGINEER"
+      ]
+    }
+  },
+  {
+    "id": "prompt_harness_standard",
+    "prompt": "Улучши промпт для AI-агента, настрой tool calling, память, MCP и критерии оценки.",
+    "expect": {
+      "trigger": true,
+      "depth": "STANDARD",
+      "execution": "specialist",
+      "specialist_route": "PROMPT_ENGINEER",
+      "overlays_contains": [
+        "PROMPT_ENGINEER",
+        "HARNESS"
+      ]
+    }
+  },
+  {
+    "id": "readme_plain_create",
+    "prompt": "Create a README for this project with installation and examples.",
+    "expect": {
+      "trigger": true,
+      "depth": "QUICK",
+      "execution": "specialist",
+      "specialist_route": "README_STUDIO",
+      "overlays_contains": [
+        "README_STUDIO"
+      ]
+    }
+  },
+  {
+    "id": "readme_full",
+    "prompt": "Полностью переработай GitHub README проекта: структуру, первый экран, доказательства, установку и SVG-баннер.",
+    "expect": {
+      "trigger": true,
+      "depth": "STANDARD",
+      "execution": "specialist",
+      "specialist_route": "README_STUDIO",
+      "overlays_contains": [
+        "README_STUDIO"
+      ]
+    }
+  },
+  {
+    "id": "readme_asset_only",
+    "prompt": "Создай только статический SVG hero для GitHub README, не меняя сам README.md.",
+    "expect": {
+      "trigger": true,
+      "depth": "QUICK",
+      "execution": "specialist",
+      "specialist_route": "README_STUDIO"
+    }
+  },
+  {
+    "id": "readme_audit",
+    "prompt": "Проведи аудит README.md и локальных SVG: ссылки, alt text, viewBox, читаемость и GitHub-совместимость.",
+    "expect": {
+      "trigger": true,
+      "depth": "STANDARD",
+      "overlays_contains": [
+        "README_STUDIO",
+        "AUDIT"
+      ]
+    }
+  },
+  {
+    "id": "security_review_specialist",
+    "prompt": "Проверь этот проект на уязвимости и проведи аудит безопасности кода.",
+    "expect": {
+      "trigger": true,
+      "depth": "STANDARD",
+      "execution": "specialist",
+      "specialist_route": "SECURITY_REVIEW",
+      "overlays_contains": [
+        "SECURITY_REVIEW",
+        "SECURITY",
+        "AUDIT"
+      ]
+    }
+  },
+  {
+    "id": "security_deep",
+    "prompt": "Deep comprehensive security audit of a production financial application and its source code.",
+    "expect": {
+      "trigger": true,
+      "depth": "DEEP",
+      "specialist_route": "SECURITY_REVIEW"
+    }
+  },
+  {
+    "id": "upstream_simple",
+    "prompt": "Check for updates in the upstream repository and merge the latest methodology changes.",
+    "expect": {
+      "trigger": true,
+      "depth": "QUICK",
+      "execution": "specialist",
+      "specialist_route": "UPSTREAM_MAINTENANCE",
+      "overlays_contains": [
+        "UPSTREAM_MAINTENANCE"
+      ]
+    }
+  },
+  {
+    "id": "upstream_security_review",
+    "prompt": "Проверь обновления в репозитории, сделай аудит изменений безопасности и обнови модуль.",
+    "expect": {
+      "trigger": true,
+      "depth": "STANDARD",
+      "specialist_route": "UPSTREAM_MAINTENANCE",
+      "overlays_contains": [
+        "UPSTREAM_MAINTENANCE",
+        "SECURITY"
+      ]
+    }
+  },
+  {
+    "id": "humanize_simple",
+    "prompt": "Humanize this paragraph without inventing facts.",
+    "expect": {
+      "trigger": true,
+      "depth": "QUICK",
+      "execution": "specialist",
+      "specialist_route": "HUMANIZE"
+    }
+  },
+  {
+    "id": "humanize_long_payload_stays_quick",
+    "prompt": "Humanize this text without changing facts:\n",
+    "repeat": {
+      "text": "The system provides a robust and comprehensive solution. ",
+      "count": 200
+    },
+    "expect": {
+      "trigger": true,
+      "depth": "QUICK",
+      "execution": "specialist",
+      "specialist_route": "HUMANIZE"
+    }
+  },
+  {
+    "id": "humanize_technical_review",
+    "prompt": "Humanize and review this security report while preserving every finding and citation.",
+    "expect": {
+      "trigger": true,
+      "depth": "STANDARD",
+      "execution": "specialist",
+      "specialist_route": "HUMANIZE",
+      "overlays_contains": [
+        "HUMANIZE",
+        "SECURITY"
+      ]
+    }
+  },
+  {
+    "id": "humanize_ru_natural",
+    "prompt": "Перепиши этот текст естественнее, сохранив все факты и ссылки.",
+    "expect": {
+      "trigger": true,
+      "depth": "QUICK",
+      "execution": "specialist",
+      "specialist_route": "HUMANIZE"
+    }
+  },
+  {
+    "id": "long_payload_not_complexity",
+    "prompt": "Summarize the following neutral text:\n",
+    "repeat": {
+      "text": "A plain sentence about a historical event. ",
+      "count": 300
+    },
+    "expect": {
+      "trigger": false,
+      "depth": "DIRECT",
+      "execution": "direct"
+    }
+  },
+  {
+    "id": "router_false_positive_planet_standard",
+    "prompt": "Explain planetary motion and standard deviation.",
+    "expect": {
+      "trigger": false,
+      "depth": "DIRECT",
+      "overlays_not_contains": [
+        "PLAN"
+      ]
+    }
+  },
+  {
+    "id": "movie_review_direct",
+    "prompt": "Write a short review of this movie.",
+    "expect": {
+      "trigger": false,
+      "depth": "DIRECT",
+      "overlays_not_contains": [
+        "AUDIT"
+      ]
+    }
+  },
+  {
+    "id": "security_blanket_direct",
+    "prompt": "What is a security blanket for a toddler?",
+    "expect": {
+      "trigger": false,
+      "depth": "DIRECT",
+      "overlays_contains": [
+        "SECURITY"
+      ]
+    }
+  },
+  {
+    "id": "latest_simple_direct",
+    "prompt": "What is the latest stable Python syntax for type aliases?",
+    "expect": {
+      "trigger": false,
+      "depth": "DIRECT",
+      "overlays_contains": [
+        "VERIFY"
+      ]
+    }
+  },
+  {
+    "id": "formal_architecture_audit",
+    "prompt": "Audit the architecture and implementation of this service.",
+    "expect": {
+      "trigger": true,
+      "depth": "STANDARD",
+      "execution": "panel",
+      "overlays_contains": [
+        "AUDIT"
+      ]
+    }
+  },
+  {
+    "id": "research_synthesis",
+    "prompt": "Conduct a systematic literature review and research synthesis on this question.",
+    "expect": {
+      "trigger": true,
+      "depth": "STANDARD",
+      "execution": "panel",
+      "overlays_contains": [
+        "RESEARCH"
+      ]
+    }
+  },
+  {
+    "id": "explicit_panel_with_prompt",
+    "prompt": "Use an expert panel to improve this prompt and challenge its assumptions.",
+    "expect": {
+      "trigger": true,
+      "depth": "STANDARD",
+      "execution": "panel",
+      "specialist_route": "PROMPT_ENGINEER"
+    }
+  },
+  {
+    "id": "readme_and_security_panel",
+    "prompt": "Redesign the GitHub README and independently audit all security claims and installation commands.",
+    "expect": {
+      "trigger": true,
+      "depth": "STANDARD",
+      "execution": "panel",
+      "specialist_route": "README_STUDIO",
+      "overlays_contains": [
+        "README_STUDIO",
+        "SECURITY",
+        "AUDIT"
+      ]
+    }
+  },
+  {
+    "id": "multi_domain_compare_triggers",
+    "prompt": "Compare Kubernetes vs ECS for cost, security and operations",
+    "expect": {
+      "trigger": true,
+      "depth": "STANDARD",
+      "execution": "panel",
+      "overlays_contains": [
+        "SECURITY"
+      ]
+    }
+  },
+  {
+    "id": "tradeoff_architecture_triggers",
+    "prompt": "Architecture decision: microservices vs monolith, costs, ops, security trade-offs",
+    "expect": {
+      "trigger": true,
+      "depth": "STANDARD",
+      "execution": "panel"
+    }
+  },
+  {
+    "id": "humanize_ru_more_human",
+    "prompt": "сделай текст более человечным",
+    "expect": {
+      "trigger": true,
+      "depth": "QUICK",
+      "execution": "specialist",
+      "specialist_route": "HUMANIZE"
+    }
+  },
+  {
+    "id": "humanize_ru_clarity",
+    "prompt": "Сделай текст более естественным и ясным",
+    "expect": {
+      "trigger": true,
+      "depth": "QUICK",
+      "execution": "specialist",
+      "specialist_route": "HUMANIZE"
+    }
+  },
+  {
+    "id": "plan_only_stays_direct",
+    "prompt": "Should our team split the monolith into microservices this year with a migration plan?",
+    "expect": {
+      "trigger": false,
+      "depth": "DIRECT",
+      "execution": "direct",
+      "overlays_contains": [
+        "PLAN"
+      ]
+    }
+  },
+  {
+    "id": "generic_compare_strings_direct",
+    "prompt": "Compare two strings in Python.",
+    "expect": {
+      "trigger": false,
+      "depth": "DIRECT",
+      "execution": "direct"
+    }
+  },
+  {
+    "id": "generic_compare_numbers_ru_direct",
+    "prompt": "Сравни числа 10 и 12.",
+    "expect": {
+      "trigger": false,
+      "depth": "DIRECT",
+      "execution": "direct"
+    }
+  },
+  {
+    "id": "high_stakes_investment_decision",
+    "prompt": "Should I invest my retirement savings in one startup?",
+    "expect": {
+      "trigger": true,
+      "depth": "STANDARD",
+      "execution": "panel"
+    }
+  },
+  {
+    "id": "high_stakes_medical_decision_ru",
+    "prompt": "Стоит ли отменить назначенное лекарство из-за побочного эффекта?",
+    "expect": {
+      "trigger": true,
+      "depth": "STANDARD",
+      "execution": "panel"
+    }
+  },
+  {
+    "id": "compare_single_criterion_direct",
+    "prompt": "Compare Redis vs Memcached by speed.",
+    "expect": {
+      "trigger": false,
+      "depth": "DIRECT",
+      "execution": "direct"
+    }
+  },
+  {
+    "id": "compare_ru_multi_criteria_panel",
+    "prompt": "Сравни PostgreSQL и MySQL по стоимости, безопасности и надежности.",
+    "expect": {
+      "trigger": true,
+      "depth": "STANDARD",
+      "execution": "panel"
+    }
+  },
+  {
+    "id": "explicit_installed_humanizer_route",
+    "prompt": "Use $humanizer to rewrite this text naturally.",
+    "expect": {
+      "trigger": true,
+      "execution": "specialist",
+      "specialist_route": "HUMANIZE",
+      "preferred_external_skill": "humanizer"
+    }
+  },
+  {
+    "id": "explicit_installed_readme_route",
+    "prompt": "Use $beautify-github-readme to create a project-native README hero.",
+    "expect": {
+      "trigger": true,
+      "execution": "specialist",
+      "specialist_route": "README_STUDIO",
+      "preferred_external_skill": "beautify-github-readme"
+    }
+  },
+  {
+    "id": "bundled_prompt_has_no_external_skill",
+    "prompt": "Improve this system prompt.",
+    "expect": {
+      "trigger": true,
+      "specialist_route": "PROMPT_ENGINEER",
+      "preferred_external_skill": null
+    }
+  },
+  {
+    "id": "info_security_audit_direct",
+    "prompt": "What is a security audit?",
+    "expect": {
+      "trigger": false,
+      "depth": "DIRECT",
+      "execution": "direct",
+      "specialist_route": null
+    }
+  },
+  {
+    "id": "info_prompt_engineering_direct",
+    "prompt": "Explain prompt engineering.",
+    "expect": {
+      "trigger": false,
+      "depth": "DIRECT",
+      "execution": "direct",
+      "specialist_route": null
+    }
+  },
+  {
+    "id": "info_humanizer_direct",
+    "prompt": "Humanizer is a GitHub project.",
+    "expect": {
+      "trigger": false,
+      "depth": "DIRECT",
+      "execution": "direct",
+      "specialist_route": null
+    }
+  },
+  {
+    "id": "info_readme_direct",
+    "prompt": "What is a GitHub README?",
+    "expect": {
+      "trigger": false,
+      "depth": "DIRECT",
+      "execution": "direct",
+      "specialist_route": null
+    }
+  },
+  {
+    "id": "info_upstream_direct",
+    "prompt": "What does upstream mean in Git?",
+    "expect": {
+      "trigger": false,
+      "depth": "DIRECT",
+      "execution": "direct",
+      "specialist_route": null
+    }
+  },
+  {
+    "id": "weather_forecast_direct",
+    "prompt": "Forecast for Miami tomorrow?",
+    "expect": {
+      "trigger": false,
+      "depth": "DIRECT",
+      "execution": "direct",
+      "specialist_route": null
+    }
+  },
+  {
+    "id": "info_security_ru_direct",
+    "prompt": "Что такое аудит безопасности?",
+    "expect": {
+      "trigger": false,
+      "depth": "DIRECT",
+      "execution": "direct",
+      "specialist_route": null
+    }
+  },
+  {
+    "id": "info_prompt_ru_direct",
+    "prompt": "Объясни, что такое промпт-инжиниринг.",
+    "expect": {
+      "trigger": false,
+      "depth": "DIRECT",
+      "execution": "direct",
+      "specialist_route": null
+    }
+  },
+  {
+    "id": "security_action_specialist",
+    "prompt": "Проведи security audit этого проекта.",
+    "expect": {
+      "trigger": true,
+      "depth": "STANDARD",
+      "execution": "specialist",
+      "specialist_route": "SECURITY_REVIEW"
+    }
+  },
+  {
+    "id": "readme_action_specialist",
+    "prompt": "I need a GitHub README redesign for this repository.",
+    "expect": {
+      "trigger": true,
+      "depth": "QUICK",
+      "execution": "specialist",
+      "specialist_route": "README_STUDIO",
+      "preferred_external_skill": "beautify-github-readme"
+    }
+  },
+  {
+    "id": "upstream_action_specialist",
+    "prompt": "Проверь обновления в upstream repository.",
+    "expect": {
+      "trigger": true,
+      "depth": "QUICK",
+      "execution": "specialist",
+      "specialist_route": "UPSTREAM_MAINTENANCE"
+    }
+  },
+  {
+    "id": "prompt_action_specialist_en",
+    "prompt": "Audit and improve this system prompt.",
+    "expect": {
+      "trigger": true,
+      "depth": "QUICK",
+      "execution": "specialist",
+      "specialist_route": "PROMPT_ENGINEER"
+    }
+  },
+  {
+    "id": "project_review_en",
+    "prompt": "Review this codebase from multiple perspectives: architecture, security, maintainability.",
+    "expect": {
+      "trigger": true,
+      "depth": "STANDARD",
+      "execution": "panel",
+      "specialist_route": null,
+      "overlays_contains": ["PROJECT_REVIEW", "SECURITY"]
+    }
+  },
+  {
+    "id": "project_review_ru",
+    "prompt": "Оцени этот проект с разных сторон: архитектура, безопасность и производительность.",
+    "expect": {
+      "trigger": true,
+      "depth": "STANDARD",
+      "execution": "panel",
+      "specialist_route": null,
+      "overlays_contains": ["PROJECT_REVIEW", "SECURITY"]
+    }
+  },
+  {
+    "id": "project_review_criteria_en",
+    "prompt": "Assess this repository for architecture and maintainability.",
+    "expect": {
+      "trigger": true,
+      "depth": "STANDARD",
+      "execution": "panel",
+      "overlays_contains": ["PROJECT_REVIEW"]
+    }
+  },
+  {
+    "id": "project_review_criteria_ru",
+    "prompt": "Проведи ревью кода по архитектуре и качеству кода.",
+    "expect": {
+      "trigger": true,
+      "depth": "STANDARD",
+      "execution": "panel",
+      "overlays_contains": ["PROJECT_REVIEW"]
+    }
+  },
+  {
+    "id": "security_only_not_project_review_en",
+    "prompt": "Review this codebase for security vulnerabilities only.",
+    "expect": {
+      "trigger": true,
+      "execution": "specialist",
+      "specialist_route": "SECURITY_REVIEW",
+      "overlays_not_contains": ["PROJECT_REVIEW"]
+    }
+  },
+  {
+    "id": "security_only_not_project_review_ru",
+    "prompt": "Проверь этот проект на уязвимости безопасности.",
+    "expect": {
+      "trigger": true,
+      "execution": "specialist",
+      "specialist_route": "SECURITY_REVIEW",
+      "overlays_not_contains": ["PROJECT_REVIEW"]
+    }
+  },
+  {
+    "id": "beginner_guide_en",
+    "prompt": "I am a beginner with a vague app idea; where should I start?",
+    "expect": {
+      "trigger": true,
+      "depth": "QUICK",
+      "execution": "specialist",
+      "specialist_route": "BEGINNER_GUIDE",
+      "overlays_contains": ["BEGINNER_GUIDE"]
+    }
+  },
+  {
+    "id": "beginner_guide_ru",
+    "prompt": "Я новичок, у меня смутная идея приложения. С чего начать?",
+    "expect": {
+      "trigger": true,
+      "depth": "QUICK",
+      "execution": "specialist",
+      "specialist_route": "BEGINNER_GUIDE",
+      "overlays_contains": ["BEGINNER_GUIDE"]
+    }
+  },
+  {
+    "id": "routine_idea_direct_en",
+    "prompt": "Suggest a name for my app idea.",
+    "expect": {
+      "trigger": false,
+      "depth": "DIRECT",
+      "execution": "direct",
+      "overlays_not_contains": ["BEGINNER_GUIDE", "PROJECT_REVIEW"]
+    }
+  },
+  {
+    "id": "routine_idea_direct_ru",
+    "prompt": "Придумай название для идеи приложения.",
+    "expect": {
+      "trigger": false,
+      "depth": "DIRECT",
+      "execution": "direct",
+      "overlays_not_contains": ["BEGINNER_GUIDE", "PROJECT_REVIEW"]
+    }
+  },
+  {
+    "id": "informational_guide_direct_en",
+    "prompt": "What is a beginner guide for an app idea?",
+    "expect": {
+      "trigger": false,
+      "depth": "DIRECT",
+      "execution": "direct",
+      "specialist_route": null,
+      "overlays_not_contains": ["BEGINNER_GUIDE"]
+    }
+  },
+  {
+    "id": "informational_review_direct_ru",
+    "prompt": "Что такое оценка проекта с разных сторон?",
+    "expect": {
+      "trigger": false,
+      "depth": "DIRECT",
+      "execution": "direct",
+      "overlays_not_contains": ["PROJECT_REVIEW"]
+    }
+  },
+  {
+    "id": "informational_review_direct_en",
+    "prompt": "Explain how a project review across architecture and security works.",
+    "expect": {
+      "trigger": false,
+      "depth": "DIRECT",
+      "execution": "direct",
+      "overlays_not_contains": ["PROJECT_REVIEW"]
+    }
+  },
+  {
+    "id": "beginner_idea_without_guidance_direct",
+    "prompt": "I am a beginner with an app idea. Suggest three names.",
+    "expect": {
+      "trigger": false,
+      "depth": "DIRECT",
+      "execution": "direct",
+      "overlays_not_contains": ["BEGINNER_GUIDE"]
+    }
+  },
+  {
+    "id": "brainstorm_mode_en",
+    "prompt": "Brainstorm three different approaches for a low-cost study planner.",
+    "expect": {
+      "trigger": true,
+      "depth": "QUICK",
+      "execution": "specialist",
+      "overlays_contains": ["IDEATE"]
+    }
+  },
+  {
+    "id": "critique_mode_ru",
+    "prompt": "Раскритикуй мой план запуска: найди слабые места и риски.",
+    "expect": {
+      "trigger": true,
+      "depth": "QUICK",
+      "execution": "specialist",
+      "overlays_contains": ["CRITIQUE"]
+    }
+  },
+  {
+    "id": "decision_mode_en",
+    "prompt": "Help me choose which option is better for this project.",
+    "expect": {
+      "trigger": true,
+      "depth": "QUICK",
+      "execution": "specialist",
+      "overlays_contains": ["DECISION"]
+    }
+  },
+  {
+    "id": "premortem_mode_ru",
+    "prompt": "Сделай премортем: представь, что запуск провалился, что могло пойти не так?",
+    "expect": {
+      "trigger": true,
+      "depth": "STANDARD",
+      "overlays_contains": ["PRE_MORTEM"]
+    }
+  },
+  {
+    "id": "learn_mode_en",
+    "prompt": "Teach me how Git branches work; I am a beginner.",
+    "expect": {
+      "trigger": true,
+      "depth": "QUICK",
+      "execution": "specialist",
+      "overlays_contains": ["LEARN"]
+    }
+  },
+  {
+    "id": "mode_info_direct",
+    "prompt": "What is a pre-mortem in project planning?",
+    "expect": {
+      "trigger": false,
+      "depth": "DIRECT",
+      "execution": "direct",
+      "overlays_not_contains": ["PRE_MORTEM"]
+    }
+  }
+]

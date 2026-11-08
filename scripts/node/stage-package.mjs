@@ -1,0 +1,16 @@
+import { cp, mkdir, rm } from 'node:fs/promises';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+const here=dirname(fileURLToPath(import.meta.url));
+const repo=resolve(here,'../..');
+const payload=resolve(repo,'skills','expert-panel');
+const dst=resolve(here,'package-payload','skills','expert-panel');
+const licenses=resolve(repo,'docs','licenses');
+const exporter=resolve(repo,'scripts','export_formats.py');
+if (!(await import('node:fs/promises')).stat(payload).catch(()=>null)) throw new Error('Missing canonical skills/expert-panel payload');
+await rm(resolve(here,'package-payload'),{recursive:true,force:true});
+await mkdir(dirname(dst),{recursive:true});
+await cp(payload,dst,{recursive:true,filter:p=>!p.includes('/__pycache__/')&&!p.endsWith('.pyc')&&!p.endsWith('.zip')});
+await cp(licenses,resolve(here,'package-payload','licenses'),{recursive:true});
+await cp(exporter,resolve(here,'package-payload','export_formats.py'));
+console.log('Staged one canonical payload for npm packing.');

@@ -1,0 +1,39 @@
+name: Validate Expert Panel
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Validate canonical skill payload
+        run: python scripts/validate_skill.py skills/expert-panel
+      - name: Route evaluations
+        run: python scripts/tests/run_evals.py skills/expert-panel
+      - name: Role orchestration cases
+        run: python scripts/role_orchestrator.py --check-cases
+      - name: Deterministic tests
+        run: python scripts/tests/self_test.py skills/expert-panel
+      - name: Public tree audit
+        run: python scripts/audit_release.py .
+      - name: README and assets audit
+        run: python scripts/tests/audit_readme.py README.md --root . --strict
+      - name: Compile Python tools
+        run: python -m compileall -q scripts
+      - name: Build publishable installers in temporary output
+        run: python scripts/python/build_publishable.py --target both --output "$RUNNER_TEMP/expert-panel-dist"
+      - name: Check npm CLI syntax
+        run: node --check scripts/node/cli.mjs

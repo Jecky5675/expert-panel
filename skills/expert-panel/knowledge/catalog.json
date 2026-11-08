@@ -1,0 +1,612 @@
+{
+  "schema_version": 1,
+  "name": "Expert Panel Knowledge Base",
+  "description": "Curated link catalog of stable knowledge sources. Experts consult matching entries before inventing sources. Links are pointers, not cached content. Prefer live verification when tools allow.",
+  "updated": "2026-08-04",
+  "usage": [
+    "Match task domain/tags to entries before first-pass claim cards",
+    "Cite entry id (KB-xxx) in evidence ledger when a link was used as a starting point",
+    "Never treat a catalog link as proof that a claim is true without reading or verifying the target",
+    "Prefer primary/official sources over secondary summaries",
+    "If web access is unavailable, still use catalog titles/notes as research direction and mark freshness UNKNOWN"
+  ],
+  "entries": [
+    {
+      "id": "KB-SEC-001",
+      "domain": "security",
+      "title": "OWASP Top Ten",
+      "url": "https://owasp.org/www-project-top-ten/",
+      "tags": [
+        "web",
+        "vulnerabilities",
+        "owasp",
+        "appsec"
+      ],
+      "notes": "Canonical high-level web application risk categories. Use for scope framing, not as a substitute for code inspection.",
+      "freshness": "check annually"
+    },
+    {
+      "id": "KB-SEC-002",
+      "domain": "security",
+      "title": "OWASP ASVS",
+      "url": "https://owasp.org/www-project-application-security-verification-standard/",
+      "tags": [
+        "verification",
+        "requirements",
+        "asvs"
+      ],
+      "notes": "Verification requirements for application security controls.",
+      "freshness": "check major releases"
+    },
+    {
+      "id": "KB-SEC-003",
+      "domain": "security",
+      "title": "CWE Top 25",
+      "url": "https://cwe.mitre.org/top25/",
+      "tags": [
+        "weaknesses",
+        "cwe",
+        "software"
+      ],
+      "notes": "Common weakness enumeration ranking for software defects.",
+      "freshness": "annual list"
+    },
+    {
+      "id": "KB-SEC-004",
+      "domain": "security",
+      "title": "NIST SP 800-53",
+      "url": "https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final",
+      "tags": [
+        "controls",
+        "nist",
+        "governance"
+      ],
+      "notes": "Security and privacy control catalog for information systems.",
+      "freshness": "rev-based"
+    },
+    {
+      "id": "KB-SEC-005",
+      "domain": "security",
+      "title": "NIST Cybersecurity Framework",
+      "url": "https://www.nist.gov/cyberframework",
+      "tags": [
+        "framework",
+        "risk",
+        "nist"
+      ],
+      "notes": "High-level identify/protect/detect/respond/recover structure.",
+      "freshness": "check CSF version"
+    },
+    {
+      "id": "KB-SEC-006",
+      "domain": "security",
+      "title": "CIS Controls",
+      "url": "https://www.cisecurity.org/controls",
+      "tags": [
+        "controls",
+        "baselines",
+        "ops"
+      ],
+      "notes": "Prioritized defensive actions for organizations.",
+      "freshness": "versioned"
+    },
+    {
+      "id": "KB-SEC-007",
+      "domain": "security",
+      "title": "OWASP Cheat Sheet Series",
+      "url": "https://cheatsheetseries.owasp.org/",
+      "tags": [
+        "cheatsheets",
+        "practical",
+        "dev"
+      ],
+      "notes": "Practical defensive guidance for common implementation topics.",
+      "freshness": "ongoing"
+    },
+    {
+      "id": "KB-SEC-008",
+      "domain": "security",
+      "title": "CVE Program",
+      "url": "https://www.cve.org/",
+      "tags": [
+        "vulnerabilities",
+        "cve",
+        "advisories"
+      ],
+      "notes": "Identifier system for publicly disclosed vulnerabilities.",
+      "freshness": "continuous"
+    },
+    {
+      "id": "KB-ARCH-001",
+      "domain": "architecture",
+      "title": "Architecture Decision Records guidance",
+      "url": "https://adr.github.io/",
+      "tags": [
+        "adr",
+        "decisions",
+        "documentation"
+      ],
+      "notes": "Lightweight decision-record practice for architecture choices.",
+      "freshness": "stable methodology"
+    },
+    {
+      "id": "KB-ARCH-002",
+      "domain": "architecture",
+      "title": "12-Factor App",
+      "url": "https://12factor.net/",
+      "tags": [
+        "saas",
+        "cloud",
+        "ops",
+        "design"
+      ],
+      "notes": "Classic SaaS methodology; apply selectively, not as dogma.",
+      "freshness": "stable"
+    },
+    {
+      "id": "KB-ARCH-003",
+      "domain": "architecture",
+      "title": "Microsoft Azure Architecture Center",
+      "url": "https://learn.microsoft.com/azure/architecture/",
+      "tags": [
+        "cloud",
+        "patterns",
+        "reference"
+      ],
+      "notes": "Cloud reference architectures and design patterns (vendor-specific context).",
+      "freshness": "ongoing"
+    },
+    {
+      "id": "KB-ARCH-004",
+      "domain": "architecture",
+      "title": "AWS Well-Architected Framework",
+      "url": "https://aws.amazon.com/architecture/well-architected/",
+      "tags": [
+        "cloud",
+        "ops",
+        "reliability",
+        "cost"
+      ],
+      "notes": "Pillars for cloud architecture quality; vendor lens.",
+      "freshness": "ongoing"
+    },
+    {
+      "id": "KB-ARCH-005",
+      "domain": "architecture",
+      "title": "Google Cloud Architecture Framework",
+      "url": "https://cloud.google.com/architecture/framework",
+      "tags": [
+        "cloud",
+        "design",
+        "ops"
+      ],
+      "notes": "Cross-cutting design principles for cloud systems.",
+      "freshness": "ongoing"
+    },
+    {
+      "id": "KB-SRE-001",
+      "domain": "operations",
+      "title": "Google SRE Book",
+      "url": "https://sre.google/sre-book/table-of-contents/",
+      "tags": [
+        "sre",
+        "reliability",
+        "ops",
+        "incident"
+      ],
+      "notes": "Foundational SRE practices: SLOs, error budgets, toil, incident response.",
+      "freshness": "book stable; practices evolve"
+    },
+    {
+      "id": "KB-SRE-002",
+      "domain": "operations",
+      "title": "Google SRE Workbook",
+      "url": "https://sre.google/workbook/table-of-contents/",
+      "tags": [
+        "sre",
+        "implementation",
+        "practices"
+      ],
+      "notes": "Practical companion to the SRE book.",
+      "freshness": "stable"
+    },
+    {
+      "id": "KB-SRE-003",
+      "domain": "operations",
+      "title": "ITIL overview (Axelos)",
+      "url": "https://www.axelos.com/certifications/itil-service-management",
+      "tags": [
+        "itil",
+        "service-management"
+      ],
+      "notes": "Service management framing; use selectively for enterprise ops contexts.",
+      "freshness": "versioned"
+    },
+    {
+      "id": "KB-RES-001",
+      "domain": "research",
+      "title": "Cochrane Library",
+      "url": "https://www.cochranelibrary.com/",
+      "tags": [
+        "systematic-review",
+        "evidence",
+        "health"
+      ],
+      "notes": "High-quality systematic reviews (health-focused).",
+      "freshness": "continuous"
+    },
+    {
+      "id": "KB-RES-002",
+      "domain": "research",
+      "title": "PRISMA Statement",
+      "url": "https://www.prisma-statement.org/",
+      "tags": [
+        "reporting",
+        "systematic-review"
+      ],
+      "notes": "Reporting standard for systematic reviews and meta-analyses.",
+      "freshness": "statement versions"
+    },
+    {
+      "id": "KB-RES-003",
+      "domain": "research",
+      "title": "Google Scholar",
+      "url": "https://scholar.google.com/",
+      "tags": [
+        "search",
+        "papers",
+        "citations"
+      ],
+      "notes": "Broad academic search; verify primary papers and publication status.",
+      "freshness": "continuous"
+    },
+    {
+      "id": "KB-RES-004",
+      "domain": "research",
+      "title": "Semantic Scholar",
+      "url": "https://www.semanticscholar.org/",
+      "tags": [
+        "search",
+        "papers",
+        "ai"
+      ],
+      "notes": "Academic search with citation graphs; still verify primary sources.",
+      "freshness": "continuous"
+    },
+    {
+      "id": "KB-RES-005",
+      "domain": "research",
+      "title": "Crossref",
+      "url": "https://www.crossref.org/",
+      "tags": [
+        "doi",
+        "metadata",
+        "citations"
+      ],
+      "notes": "DOI and bibliographic metadata infrastructure.",
+      "freshness": "continuous"
+    },
+    {
+      "id": "KB-PROMPT-001",
+      "domain": "prompt_engineering",
+      "title": "OpenAI Prompt Engineering Guide",
+      "url": "https://platform.openai.com/docs/guides/prompt-engineering",
+      "tags": [
+        "prompts",
+        "vendor",
+        "practices"
+      ],
+      "notes": "Vendor guide; extract durable principles, avoid model-specific claims without verification.",
+      "freshness": "check docs date"
+    },
+    {
+      "id": "KB-PROMPT-002",
+      "domain": "prompt_engineering",
+      "title": "Anthropic Prompt Library / docs",
+      "url": "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview",
+      "tags": [
+        "prompts",
+        "vendor",
+        "claude"
+      ],
+      "notes": "Vendor prompt engineering overview.",
+      "freshness": "check docs date"
+    },
+    {
+      "id": "KB-PROMPT-003",
+      "domain": "prompt_engineering",
+      "title": "Agent Skills specification discussion (public docs)",
+      "url": "https://support.claude.com/en/articles/12512180-use-skills-in-claude",
+      "tags": [
+        "skills",
+        "agents",
+        "host"
+      ],
+      "notes": "Host skill usage; do not invent host capabilities.",
+      "freshness": "product docs"
+    },
+    {
+      "id": "KB-README-001",
+      "domain": "readme",
+      "title": "GitHub Markdown docs",
+      "url": "https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax",
+      "tags": [
+        "markdown",
+        "github",
+        "readme"
+      ],
+      "notes": "Supported Markdown features on GitHub.",
+      "freshness": "product docs"
+    },
+    {
+      "id": "KB-README-002",
+      "domain": "readme",
+      "title": "GitHub README guidance",
+      "url": "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes",
+      "tags": [
+        "readme",
+        "github"
+      ],
+      "notes": "Official about-READMEs documentation.",
+      "freshness": "product docs"
+    },
+    {
+      "id": "KB-A11Y-001",
+      "domain": "accessibility",
+      "title": "WCAG 2.2",
+      "url": "https://www.w3.org/TR/WCAG22/",
+      "tags": [
+        "wcag",
+        "a11y",
+        "w3c"
+      ],
+      "notes": "Web content accessibility guidelines.",
+      "freshness": "W3C recommendation versions"
+    },
+    {
+      "id": "KB-A11Y-002",
+      "domain": "accessibility",
+      "title": "WAI-ARIA Authoring Practices",
+      "url": "https://www.w3.org/WAI/ARIA/apg/",
+      "tags": [
+        "aria",
+        "a11y",
+        "patterns"
+      ],
+      "notes": "Accessible widget patterns and authoring guidance.",
+      "freshness": "ongoing"
+    },
+    {
+      "id": "KB-SVG-001",
+      "domain": "svg",
+      "title": "SVG 1.1 / SVG2 specs (W3C)",
+      "url": "https://www.w3.org/TR/SVG2/",
+      "tags": [
+        "svg",
+        "graphics",
+        "w3c"
+      ],
+      "notes": "Authoritative SVG language reference.",
+      "freshness": "spec versions"
+    },
+    {
+      "id": "KB-LEGAL-001",
+      "domain": "legal",
+      "title": "Choose a License",
+      "url": "https://choosealicense.com/",
+      "tags": [
+        "license",
+        "oss",
+        "github"
+      ],
+      "notes": "Practical OSS license chooser; not legal advice.",
+      "freshness": "ongoing"
+    },
+    {
+      "id": "KB-LEGAL-002",
+      "domain": "legal",
+      "title": "SPDX License List",
+      "url": "https://spdx.org/licenses/",
+      "tags": [
+        "spdx",
+        "license",
+        "identifiers"
+      ],
+      "notes": "Standard license identifiers.",
+      "freshness": "ongoing"
+    },
+    {
+      "id": "KB-DATA-001",
+      "domain": "data",
+      "title": "Our World in Data",
+      "url": "https://ourworldindata.org/",
+      "tags": [
+        "statistics",
+        "global",
+        "charts"
+      ],
+      "notes": "Curated global datasets with sources; still verify underlying data.",
+      "freshness": "continuous"
+    },
+    {
+      "id": "KB-DATA-002",
+      "domain": "data",
+      "title": "World Bank Open Data",
+      "url": "https://data.worldbank.org/",
+      "tags": [
+        "statistics",
+        "economics",
+        "development"
+      ],
+      "notes": "Official development and economic indicators.",
+      "freshness": "continuous"
+    },
+    {
+      "id": "KB-DATA-003",
+      "domain": "data",
+      "title": "OECD Data",
+      "url": "https://data.oecd.org/",
+      "tags": [
+        "statistics",
+        "policy",
+        "economics"
+      ],
+      "notes": "OECD statistics portal.",
+      "freshness": "continuous"
+    },
+    {
+      "id": "KB-ML-001",
+      "domain": "ml_evaluation",
+      "title": "Papers With Code",
+      "url": "https://paperswithcode.com/",
+      "tags": [
+        "ml",
+        "benchmarks",
+        "papers"
+      ],
+      "notes": "Papers linked to code and leaderboards; verify methodology.",
+      "freshness": "continuous"
+    },
+    {
+      "id": "KB-ML-002",
+      "domain": "ml_evaluation",
+      "title": "HELM (Stanford CRFM)",
+      "url": "https://crfm.stanford.edu/helm/",
+      "tags": [
+        "llm",
+        "evaluation",
+        "benchmarks"
+      ],
+      "notes": "Holistic evaluation of language models; check current release.",
+      "freshness": "release-based"
+    },
+    {
+      "id": "KB-PRODUCT-001",
+      "domain": "product",
+      "title": "Nielsen Norman Group articles",
+      "url": "https://www.nngroup.com/articles/",
+      "tags": [
+        "ux",
+        "usability",
+        "research"
+      ],
+      "notes": "UX research articles; evidence quality varies by article.",
+      "freshness": "ongoing"
+    },
+    {
+      "id": "KB-PRODUCT-002",
+      "domain": "product",
+      "title": "Shape Up (Basecamp)",
+      "url": "https://basecamp.com/shapeup",
+      "tags": [
+        "product",
+        "delivery",
+        "planning"
+      ],
+      "notes": "Product delivery methodology; one school of practice.",
+      "freshness": "book stable"
+    },
+    {
+      "id": "KB-COST-001",
+      "domain": "cost",
+      "title": "FinOps Foundation",
+      "url": "https://www.finops.org/",
+      "tags": [
+        "cloud",
+        "cost",
+        "finops"
+      ],
+      "notes": "Cloud financial operations practices.",
+      "freshness": "ongoing"
+    },
+    {
+      "id": "KB-PRIVACY-001",
+      "domain": "privacy",
+      "title": "ICO Guide to GDPR (UK)",
+      "url": "https://ico.org.uk/for-organisations/guide-to-data-protection/guide-to-the-general-data-protection-regulation-gdpr/",
+      "tags": [
+        "gdpr",
+        "privacy",
+        "regulator"
+      ],
+      "notes": "Regulator guidance; jurisdiction-specific. Not legal advice.",
+      "freshness": "check regulator updates"
+    },
+    {
+      "id": "KB-PRIVACY-002",
+      "domain": "privacy",
+      "title": "NIST Privacy Framework",
+      "url": "https://www.nist.gov/privacy-framework",
+      "tags": [
+        "privacy",
+        "nist",
+        "risk"
+      ],
+      "notes": "Voluntary privacy risk management framework.",
+      "freshness": "versioned"
+    },
+    {
+      "id": "KB-DEV-001",
+      "domain": "engineering",
+      "title": "Python Packaging User Guide",
+      "url": "https://packaging.python.org/",
+      "tags": [
+        "python",
+        "packaging"
+      ],
+      "notes": "Authoritative Python packaging guidance.",
+      "freshness": "ongoing"
+    },
+    {
+      "id": "KB-DEV-002",
+      "domain": "engineering",
+      "title": "MDN Web Docs",
+      "url": "https://developer.mozilla.org/",
+      "tags": [
+        "web",
+        "html",
+        "css",
+        "js"
+      ],
+      "notes": "High-quality web platform reference.",
+      "freshness": "continuous"
+    },
+    {
+      "id": "KB-DEV-003",
+      "domain": "engineering",
+      "title": "RFC Editor",
+      "url": "https://www.rfc-editor.org/",
+      "tags": [
+        "standards",
+        "ietf",
+        "protocols"
+      ],
+      "notes": "Internet standards and RFCs.",
+      "freshness": "document-based"
+    },
+    {
+      "id": "KB-FORECAST-001",
+      "domain": "forecasting",
+      "title": "Good Judgment Open",
+      "url": "https://www.gjopen.com/",
+      "tags": [
+        "forecasting",
+        "calibration"
+      ],
+      "notes": "Public forecasting platform; useful for calibration culture, not as a source of facts.",
+      "freshness": "ongoing"
+    },
+    {
+      "id": "KB-FORECAST-002",
+      "domain": "forecasting",
+      "title": "Metaculus",
+      "url": "https://www.metaculus.com/",
+      "tags": [
+        "forecasting",
+        "probabilities"
+      ],
+      "notes": "Crowd forecasting; treat as probabilistic opinion, not ground truth.",
+      "freshness": "continuous"
+    }
+  ]
+}

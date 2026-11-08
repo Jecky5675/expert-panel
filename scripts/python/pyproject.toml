@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "expert-panel-installer"
+version = "27.3.0"
+description = "Interactive universal installer for the Expert Panel skill"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["../../LICENSE", "../../docs/licenses/*"]
+readme = "src/expert_panel_installer/README.txt"
+authors = [{name = "Expert Panel contributors"}]
+
+[project.scripts]
+expert-panel = "expert_panel_installer.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+packages = ["expert_panel_installer"]
+include-package-data = true
+
+[tool.setuptools.package-data]
+expert_panel_installer = ["README.txt", "export_formats.py", "skills/expert-panel/*", "skills/expert-panel/*/*", "skills/expert-panel/*/*/*", "skills/expert-panel/*/*/*/*", "licenses/*", "plugins/*", "plugins/*/*", "plugins/*/*/*"]
+
+[tool.setuptools.exclude-package-data]
+expert_panel_installer = ["**/__pycache__/*", "**/*.pyc", "**/*.zip"]

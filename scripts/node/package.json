@@ -1,0 +1,10 @@
+{
+  "name": "expert-panel-installer",
+  "version": "27.3.0",
+  "description": "Interactive universal installer for the Expert Panel skill",
+  "license": "MIT",
+  "bin": {"expert-panel": "./cli.mjs"},
+  "type": "module",
+  "files": ["cli.mjs", "package-payload/**"],
+  "engines": {"node": ">=18"}
+}
